@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Book Reader — a reading experience for non-fiction books">
+  <meta name="description" content="How Value Flows from the Job Graph — An Introduction to Advanced Jobs To Be Done">
 
   <title>How Value Flows from the Job Graph — Book Reader</title>
 
-  <!-- Fonts: Source Serif 4 (body), Space Grotesk (headings), Inter (UI), JetBrains Mono (code) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -15,536 +15,241 @@
   <!-- Design system -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/typography.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/overlay.css">
 
   <style>
-    /* ===================================================================
-       Demo page styles — temporary, for design token showcase.
-       Will be replaced by layout.css + typography.css in later steps.
-       =================================================================== */
-
-    .demo {
-      max-width: 820px;
+    /* TEMPORARY — single column centering. Replaced by layout.css in Step 3. */
+    .page {
+      max-width: 780px;
       margin: 0 auto;
-      padding: var(--space-12) var(--space-6);
-    }
-
-    .demo__header {
-      text-align: center;
-      margin-bottom: var(--space-16);
-    }
-
-    .demo__title {
-      font-family: var(--font-heading);
-      font-size: var(--text-3xl);
-      font-weight: 500;
-      line-height: var(--leading-heading);
-      letter-spacing: var(--tracking-tight);
-      margin-bottom: var(--space-3);
-    }
-
-    .demo__subtitle {
-      font-family: var(--font-ui);
-      font-size: var(--text-sm);
-      color: var(--color-ink-muted);
-      letter-spacing: var(--tracking-wide);
-      text-transform: uppercase;
-    }
-
-    /* --- Color Palette Display ---------------------------------------- */
-
-    .palette {
-      margin-bottom: var(--space-16);
-    }
-
-    .palette__title {
-      font-family: var(--font-heading);
-      font-size: var(--text-2xl);
-      font-weight: 500;
-      margin-bottom: var(--space-6);
-    }
-
-    .palette__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: var(--space-3);
-    }
-
-    .palette__swatch {
-      border-radius: var(--radius-md);
-      padding: var(--space-4);
-      min-height: 80px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: var(--space-1);
-    }
-
-    .palette__swatch-name {
-      font-family: var(--font-ui);
-      font-size: var(--text-xs);
-      font-weight: 500;
-    }
-
-    .palette__swatch-hex {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      opacity: 0.7;
-    }
-
-    /* --- Preview Section --------------------------------------------- */
-
-    .preview {
-      margin-bottom: var(--space-16);
-    }
-
-    .preview__title {
-      font-family: var(--font-heading);
-      font-size: var(--text-2xl);
-      font-weight: 500;
-      margin-bottom: var(--space-8);
-    }
-
-    .preview__section {
-      margin-bottom: var(--space-8);
-    }
-
-    .preview__label {
-      font-family: var(--font-ui);
-      font-size: var(--text-xs);
-      color: var(--color-ink-faint);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-widest);
-      margin-bottom: var(--space-3);
-    }
-
-    /* Sample body text */
-    .sample-body p {
-      max-width: var(--content-max);
-      margin-bottom: var(--space-4);
-    }
-
-    .sample-body code {
-      font-family: var(--font-mono);
-      font-size: 0.875em;
-      background: var(--color-border-light);
-      padding: 0.15em 0.4em;
-      border-radius: var(--radius-sm);
-    }
-
-    /* Sample headings */
-    .sample-headings h1 {
-      font-family: var(--font-heading);
-      font-size: var(--text-3xl);
-      font-weight: 500;
-      line-height: var(--leading-heading);
-      letter-spacing: var(--tracking-tight);
-      margin-bottom: var(--space-4);
-    }
-    .sample-headings h2 {
-      font-family: var(--font-heading);
-      font-size: var(--text-2xl);
-      font-weight: 500;
-      line-height: var(--leading-tight);
-      margin-bottom: var(--space-3);
-    }
-    .sample-headings h3 {
-      font-family: var(--font-heading);
-      font-size: var(--text-xl);
-      font-weight: 500;
-      line-height: var(--leading-tight);
-      margin-bottom: var(--space-2);
-    }
-
-    /* Sample blockquote (scholar citation — uses secondary olive) */
-    .sample-blockquote blockquote {
-      border-left: 3px solid var(--color-secondary);
-      padding-left: var(--space-6);
-      margin: var(--space-6) 0;
-      font-style: italic;
-      color: var(--color-ink-muted);
-    }
-
-    .sample-blockquote blockquote footer {
-      font-family: var(--font-ui);
-      font-size: var(--text-sm);
-      color: var(--color-ink-faint);
-      margin-top: var(--space-2);
-      font-style: normal;
-    }
-
-    /* Sample skeptic (uses primary navy) */
-    .sample-skeptic .skeptic {
-      background: var(--color-accent-light);
-      border-left: 3px solid var(--color-accent);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: var(--space-6);
-      margin: var(--space-6) 0;
-      max-width: var(--content-max);
-    }
-
-    .skeptic__header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      margin-bottom: var(--space-2);
-    }
-
-    .skeptic__icon {
-      width: 28px;
-      height: 28px;
-      background: var(--color-accent);
-      color: var(--color-paper);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-size: var(--text-sm);
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-
-    .skeptic__name {
-      font-family: var(--font-ui);
-      font-size: var(--text-sm);
-      font-weight: 600;
-      color: var(--color-accent);
-    }
-
-    .skeptic__text {
-      font-style: italic;
-      line-height: var(--leading-body);
-    }
-
-    /* Sample pull-quote */
-    .sample-pull-quote .pull-quote {
-      font-family: var(--font-body);
-      font-size: var(--text-pull);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.5;
-      text-align: center;
-      color: var(--color-accent);
-      max-width: 600px;
-      margin: var(--space-12) auto;
-      padding: 0 var(--space-6);
-    }
-
-    .pull-quote::before {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--color-accent-mid);
-      margin: 0 auto var(--space-6);
-    }
-
-    .pull-quote::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--color-accent-mid);
-      margin: var(--space-6) auto 0;
-    }
-
-    /* Interactive elements */
-    .sample-interactive {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-4);
-      align-items: center;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      background: var(--color-accent);
-      color: var(--color-paper);
-      font-family: var(--font-ui);
-      font-size: var(--text-sm);
-      font-weight: 500;
-      padding: var(--space-2) var(--space-6);
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      transition: background var(--duration-fast) var(--ease-out),
-                  transform var(--duration-fast) var(--ease-out);
-    }
-
-    .btn-primary:hover {
-      background: var(--color-accent-hover);
-      color: var(--color-paper);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      background: transparent;
-      color: var(--color-accent);
-      font-family: var(--font-ui);
-      font-size: var(--text-sm);
-      font-weight: 500;
-      padding: var(--space-2) var(--space-6);
-      border-radius: var(--radius-md);
-      border: 1.5px solid var(--color-accent);
-      text-decoration: none;
-      transition: background var(--duration-fast) var(--ease-out),
-                  transform var(--duration-fast) var(--ease-out);
-    }
-
-    .btn-secondary:hover {
-      background: var(--color-accent-light);
-      transform: translateY(-1px);
-    }
-
-    /* Selection demo */
-    .sample-selection {
-      padding: var(--space-4);
-      background: var(--color-paper-raised);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border-light);
-    }
-
-    .sample-selection p {
-      max-width: var(--content-max);
-    }
-
-    .sample-selection .hint {
-      font-family: var(--font-ui);
-      font-size: var(--text-xs);
-      color: var(--color-ink-faint);
-      margin-top: var(--space-2);
-    }
-
-    /* Font specimens */
-    .font-specimens {
-      display: grid;
-      gap: var(--space-6);
-    }
-
-    .font-specimen {
-      padding-bottom: var(--space-6);
-      border-bottom: 1px solid var(--color-border-light);
-    }
-
-    .font-specimen:last-child {
-      border-bottom: none;
-    }
-
-    .font-specimen__meta {
-      font-family: var(--font-ui);
-      font-size: var(--text-xs);
-      color: var(--color-ink-faint);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-widest);
-      margin-bottom: var(--space-2);
-    }
-
-    .font-specimen__sample--body {
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      line-height: var(--leading-body);
-      max-width: var(--content-max);
-    }
-
-    .font-specimen__sample--heading {
-      font-family: var(--font-heading);
-      font-size: var(--text-2xl);
-      font-weight: 500;
-      line-height: var(--leading-heading);
-    }
-
-    .font-specimen__sample--ui {
-      font-family: var(--font-ui);
-      font-size: var(--text-sm);
-      line-height: var(--leading-normal);
-    }
-
-    .font-specimen__sample--mono {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      line-height: var(--leading-normal);
-    }
-
-    /* Divider */
-    .demo__divider {
-      border: none;
-      border-top: 1px solid var(--color-border);
-      margin: var(--space-16) 0;
+      padding: var(--space-12) var(--space-6) var(--space-24);
     }
   </style>
 </head>
 <body>
 
-  <main class="demo">
+  <main class="page">
 
-    <!-- Header -->
-    <header class="demo__header">
-      <h1 class="demo__title">Book Reader — Design System</h1>
-      <p class="demo__subtitle">Step 1 · Design Tokens Locked In</p>
+    <!-- ==================== CHAPTER HEADER ==================== -->
+    <header class="chapter-header">
+      <p class="meta-label">Part I: Foundations</p>
+      <h1>How Value Flows from the Job Graph</h1>
+      <p class="lead"><em>An Introduction to Advanced Jobs To Be Done</em></p>
     </header>
 
-    <!-- ============================================================
-         COLOR PALETTE
-         ============================================================ -->
-    <section class="palette">
-      <h2 class="palette__title">Color Palette</h2>
+    <hr>
 
-      <div class="palette__grid">
-        <!-- Base -->
-        <div class="palette__swatch" style="background: #F5F3EF; border: 1px solid #E5E1D8;">
-          <span class="palette__swatch-name" style="color: #1A1A1A;">Paper</span>
-          <span class="palette__swatch-hex" style="color: #6B7280;">#F5F3EF</span>
-        </div>
-        <div class="palette__swatch" style="background: #1A1A1A;">
-          <span class="palette__swatch-name" style="color: #F5F3EF;">Ink</span>
-          <span class="palette__swatch-hex" style="color: #9CA3AF;">#1A1A1A</span>
-        </div>
-        <div class="palette__swatch" style="background: #6B7280;">
-          <span class="palette__swatch-name" style="color: #F5F3EF;">Ink Muted</span>
-          <span class="palette__swatch-hex" style="color: #D0DAE8;">#6B7280</span>
-        </div>
-
-        <!-- Primary — Deep Navy -->
-        <div class="palette__swatch" style="background: #2A3F5F;">
-          <span class="palette__swatch-name" style="color: #F5F3EF;">Navy (Primary)</span>
-          <span class="palette__swatch-hex" style="color: #B3C3D9;">#2A3F5F</span>
-        </div>
-        <div class="palette__swatch" style="background: #E6EBF2; border: 1px solid #B3C3D9;">
-          <span class="palette__swatch-name" style="color: #2A3F5F;">Navy Light</span>
-          <span class="palette__swatch-hex" style="color: #6B7280;">#E6EBF2</span>
-        </div>
-
-        <!-- Secondary — Dark Olive -->
-        <div class="palette__swatch" style="background: #2D4A3E;">
-          <span class="palette__swatch-name" style="color: #F5F3EF;">Olive (Secondary)</span>
-          <span class="palette__swatch-hex" style="color: #B8CFC0;">#2D4A3E</span>
-        </div>
-        <div class="palette__swatch" style="background: #E8EFEB; border: 1px solid #B8CFC0;">
-          <span class="palette__swatch-name" style="color: #2D4A3E;">Olive Light</span>
-          <span class="palette__swatch-hex" style="color: #6B7280;">#E8EFEB</span>
-        </div>
-
-        <!-- Border -->
-        <div class="palette__swatch" style="background: #E5E1D8; border: 1px solid #D0C8B8;">
-          <span class="palette__swatch-name" style="color: #1A1A1A;">Border</span>
-          <span class="palette__swatch-hex" style="color: #6B7280;">#E5E1D8</span>
-        </div>
-      </div>
+    <!-- ==================== What this chapter is about ==================== -->
+    <section id="what-this-chapter-is-about">
+      <h2>What this chapter is about</h2>
+      <ul>
+        <li>If you've heard about Jobs To Be Done and you're looking for ways to apply it in practice</li>
+        <li>If you want to learn how to create product value</li>
+        <li>If you've heard the term <em>Advanced Jobs To Be Done</em> and want to know what it actually means</li>
+      </ul>
     </section>
 
-    <hr class="demo__divider">
-
-    <!-- ============================================================
-         LIVE PREVIEW
-         ============================================================ -->
-    <section class="preview">
-      <h2 class="preview__title">Component Preview</h2>
-
-      <!-- Body text -->
-      <div class="preview__section">
-        <p class="preview__label">Body Text · Source Serif 4 · 18px / 1.8</p>
-        <div class="sample-body">
-          <p>Jobs To Be Done is a beautiful and powerful theory. But what's the point of theory if it doesn't help you make better decisions? The goal of <strong>Advanced Jobs To Be Done</strong> (AJTBD) is to give you <strong>algorithms</strong> for solving the business problems product teams actually face — and to answer the questions that come up when you launch and grow a product.</p>
-          <p>AJTBD is a practical extension of JTBD. To get from <em>"JTBD is a beautiful idea"</em> to <em>"JTBD that solves business problems,"</em> I spent five years searching for answers. I had to connect needs to goals to emotions, account for the brain's predictive function, develop a methodology using templates like <code>I want to {verb}</code>, and tie all of it back to the problems a product team needs to solve every week.</p>
-        </div>
-      </div>
-
-      <!-- Headings -->
-      <div class="preview__section">
-        <p class="preview__label">Headings · Space Grotesk · 500</p>
-        <div class="sample-headings">
-          <h1>How Value Flows from the Job Graph</h1>
-          <h2>Everyone says "create value" — nobody explains how</h2>
-          <h3>Mechanic — "climb to the previous Job"</h3>
-        </div>
-      </div>
-
-      <!-- Scholar citation (uses secondary olive) -->
-      <div class="preview__section">
-        <p class="preview__label">Scholar Citation · Secondary Olive accent</p>
-        <div class="sample-blockquote">
-          <blockquote>
-            "The brain's primary job is to predict and manage the body's metabolic resources. Perception, emotion, and action are all consequences of that predictive energy management."
-            <footer>— Lisa Feldman Barrett, <cite>Seven and a Half Lessons About the Brain</cite>, 2020</footer>
-          </blockquote>
-        </div>
-      </div>
-
-      <!-- Skeptic (uses primary navy) -->
-      <div class="preview__section">
-        <p class="preview__label">Skeptic Voice · Primary Navy accent</p>
-        <div class="sample-skeptic">
-          <div class="skeptic">
-            <div class="skeptic__header">
-              <span class="skeptic__icon">W</span>
-              <span class="skeptic__name">Wes</span>
-            </div>
-            <p class="skeptic__text">"Hold on. 'Create value' is the most overused phrase in product. Every PM book repeats it like a mantra and then describes nothing. Why should I believe AJTBD has a real answer?"</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pull-quote -->
-      <div class="preview__section">
-        <p class="preview__label">Pull-Quote</p>
-        <div class="sample-pull-quote">
-          <div class="pull-quote">
-            Value is performing the customer's Jobs more energy-efficiently than the alternatives.
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive elements -->
-      <div class="preview__section">
-        <p class="preview__label">Interactive Elements</p>
-        <div class="sample-interactive">
-          <a href="#" class="btn-primary">Open Table of Contents</a>
-          <a href="#" class="btn-secondary">Copy Link</a>
-          <a href="#">Regular text link →</a>
-        </div>
-      </div>
-
-      <!-- Text selection -->
-      <div class="preview__section">
-        <p class="preview__label">Text Selection</p>
-        <div class="sample-selection">
-          <p>Try selecting this text with your mouse to see the Deep Navy selection highlight. The cool blue selection contrasts nicely with the warm paper background.</p>
-          <p class="hint">↑ Select the text above</p>
-        </div>
-      </div>
+    <!-- ==================== Introduction ==================== -->
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>Jobs To Be Done is a beautiful and powerful theory. But what's the point of theory if it doesn't help you make better decisions?</p>
+      <p>The goal of Advanced Jobs To Be Done (AJTBD) is to give you algorithms for solving the business problems product teams actually face — and to answer the questions that come up when you launch and grow a product.</p>
+      <p>AJTBD is a practical extension of JTBD. To get from <em>"JTBD is a beautiful idea"</em> to <em>"JTBD that solves business problems,"</em> I spent five years searching for answers to <em>what is product value, and how do you create it?</em> I had to connect needs to goals to emotions, account for the brain's predictive function, develop a methodology for interviews and research using templates like <code>I want to {verb}</code>, and tie all of it back to the problems a product team needs to solve every week.</p>
+      <p>In this chapter you'll meet the foundational principles of AJTBD. You'll learn that product value is the ability to perform a customer's Jobs more energy-efficiently; you'll meet a new unit of analysis — the Job Graph; you'll see how the Job Graph generates algorithms for solving business problems; and you'll see where AJTBD does and doesn't apply.</p>
     </section>
 
-    <hr class="demo__divider">
+    <hr>
 
-    <!-- ============================================================
-         FONT SPECIMENS
-         ============================================================ -->
-    <section class="preview">
-      <h2 class="preview__title">Font Specimens</h2>
+    <!-- ==================== Everyone says "create value" ==================== -->
+    <section id="everyone-says-create-value">
+      <h2>Everyone says "create value" — nobody explains how</h2>
+      <p>In the previous chapter we established that a Job is the root cause of any human action or purchase, and that Jobs are the <em>expected outcomes</em> the brain formulates to satisfy needs. So in segmentation, and in any product decision, we have to account for the customer's Jobs.</p>
+      <p>But knowing the Jobs isn't enough. We have to offer the customer something that makes them choose our product over a competitor's.</p>
+      <p>Needs are the root cause of all action, but most people don't consciously notice them. The brain formulates goals to satisfy needs, and the goals are at least somewhat conscious. Goals = Jobs in AJTBD. But we still don't know how to make the customer pick <em>our</em> product. Presumably, value plays an important role in that choice.</p>
+      <p>But the overwhelming majority of product builders have no operational understanding of how to create value, and that creates a low-grade frustration around the whole question.</p>
+      <p>Most people don't actually know the cause-and-effect chain that leads to a purchase. AJTBD describes that chain end-to-end and gives an algorithm for creating value.</p>
 
-      <div class="font-specimens">
-        <div class="font-specimen">
-          <p class="font-specimen__meta">Body · Source Serif 4 · 18px / 1.8</p>
-          <p class="font-specimen__sample--body">The overwhelming majority of product builders have no operational understanding of how to create value, and that creates a low-grade frustration around the whole question. Most people don't actually know the cause-and-effect chain that leads to a purchase. AJTBD describes that chain end-to-end and gives an algorithm for creating value.</p>
-        </div>
+      <!-- Skeptic (Wes) — plain italic, no bold inside -->
+      <blockquote>
+        <p>Wes: "Hold on. 'Create value' is the most overused phrase in product. Every PM book repeats it like a mantra and then describes nothing. Why should I believe AJTBD has a real answer?"</p>
+      </blockquote>
 
-        <div class="font-specimen">
-          <p class="font-specimen__meta">Headings · Space Grotesk · 28px / 1.2</p>
-          <p class="font-specimen__sample--heading">Everyone says "create value" — nobody explains how</p>
-        </div>
+      <p>Fair. The proof is in the algorithm — by the end of this chapter you'll have one. If it doesn't help you make a single concrete decision differently than you would today, throw the book at the wall.</p>
+    </section>
 
-        <div class="font-specimen">
-          <p class="font-specimen__meta">UI · Inter · 14px / 1.5</p>
-          <p class="font-specimen__sample--ui">Chapter 4 of 16 · Part I: Foundations · 12 min read · Last updated January 2025</p>
-        </div>
+    <hr>
 
-        <div class="font-specimen">
-          <p class="font-specimen__meta">Mono · JetBrains Mono · 14px</p>
-          <p class="font-specimen__sample--mono">I want to {verb} so that {desired outcome} because {underlying need}</p>
-        </div>
-      </div>
+    <!-- ==================== The Job Graph ==================== -->
+    <section id="the-job-graph">
+      <h2>The Job Graph</h2>
+      <p><strong>The Job Graph is the hierarchy of Jobs a person performs in order to satisfy their needs.</strong></p>
+      <p>The Job Graph is the second unit of analysis in AJTBD (the first is the Job itself) and it is one of the main differences from classical JTBD.</p>
+      <p>A quick note: "graph" is a math term, not a noble title.</p>
+      <p>From understanding and reshaping the Job Graph, you derive value, product strategy, and the algorithms for solving business problems: which segment to launch a new product into, how to grow conversion to payment, how to retain and reactivate customers, how to grow average revenue per user, how to escape direct competition, how to build disruptive products, and so on.</p>
+      <p>If you take any sufficiently complex Job, you'll find that to perform it — if the person decides to do everything themselves — they have to perform a number of <em>sub-Jobs</em>.</p>
+      <p>A real customer's Job Graph is determined by two things:</p>
+      <ol>
+        <li>The structure of the Job Graph that the <em>creators of the solution</em> baked into it.</li>
+        <li>The customer's <em>choice</em> of which solution to use to perform the Job.</li>
+      </ol>
+      <p>These two principles of how Job Graphs form are what value and strategy flow from. We'll come back to them throughout this chapter.</p>
+    </section>
+
+    <hr>
+
+    <!-- ==================== What is value? ==================== -->
+    <section id="what-is-value">
+      <h2>What is value?</h2>
+      <p><em>"What is product value, and how do I create it?"</em> is one of the most important questions any product builder must be able to answer. Two years ago I realized I didn't have a good answer — and that the books I'd read on product management, economics, and behavioral psychology didn't either. So I had to do my own research.</p>
+      <p>Economics textbooks claim that value = benefit – cost.</p>
+
+      <!-- Scholar citation -->
+      <blockquote>
+        <p>"The brain's primary job is to predict and manage the body's metabolic resources. Perception, emotion, and action are all consequences of that predictive energy management."</p>
+        <p>— Lisa Feldman Barrett, <em>Seven and a Half Lessons About the Brain</em>, 2020</p>
+      </blockquote>
+
+      <p>If Barrett is right, the brain is, above all else, a resource manager. It manages water, oxygen, glucose, fats, minerals, neurotransmitters — and it manages them like an investor: it spends X units of energy now in expectation of getting 3X in return.</p>
+      <p><strong>Value is performing the customer's Jobs more energy-efficiently than the alternatives.</strong></p>
+      <p>But the formula <code>value = benefit – cost</code> doesn't explain two important phenomena: the existence of "problems" and the surprise we feel when something is genuinely valuable.</p>
+
+      <h3>A note on expectations</h3>
+      <p>Expectations (often unconscious) play a critical role in how the brain assesses the value of a particular solution. This is a thesis we'll come back to repeatedly.</p>
+    </section>
+
+    <hr>
+
+    <!-- ==================== How value flows ==================== -->
+    <section id="how-value-flows">
+      <h2>How value flows from the Job Graph</h2>
+      <p>Knowing that value = "performing Jobs more energy-efficiently" doesn't, by itself, do anything for you. You need a repeatable algorithm for creating value.</p>
+      <p>If you overlay the brain's drive toward energy-efficiency onto the Job Graph, it turns out that absolutely every successful product decision ever made can be explained as the optimization of a Job Graph.</p>
+      <p>Even simpler: <strong>value is created by transforming and simplifying the Job Graph.</strong></p>
+
+      <!-- Single image -->
+      <figure>
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_1.png"
+             alt="How gas stations evolved from single-Job to multi-Job solutions"
+             loading="lazy">
+        <figcaption>How the simplest gas stations turned into roadside supermarkets — all from the customer's Job Graph.</figcaption>
+      </figure>
+
+      <p>Let's break down what a "problem" actually is:</p>
+      <ol>
+        <li>The Job isn't getting done, and the person feels negative emotions because they spent time and effort and got nothing.</li>
+        <li>They feel a dopamine dip because their predictive model was wrong.</li>
+        <li>They now have to perform extra Jobs to complete the higher-level Job. I call these <em>"Tax Jobs."</em></li>
+      </ol>
+
+      <p>"Simpler", "easier", "more convenient" — these are always the killing of Jobs.</p>
+
+      <h3>The algorithm for creating value</h3>
+      <p>This gives us the following algorithm for creating value:</p>
+      <ol>
+        <li>Study the Job Graphs of your focus segments with their current solutions — including the problems they hit and the expectations they hold.</li>
+        <li>Generate hypotheses for which value mechanics you can apply on top of those graphs.</li>
+        <li>Rank those mechanics by:
+          <ul>
+            <li>higher levels in the graph</li>
+            <li>Jobs in the critical sequence</li>
+            <li>Jobs that are performed worst, or where you see the largest customer drop-off</li>
+          </ul>
+        </li>
+      </ol>
+
+      <p>I currently see more than 20 mechanics for value creation, including:</p>
+
+      <h3>Base mechanics</h3>
+      <ul>
+        <li>Start performing a Job that wasn't being performed at all</li>
+        <li>Fix problems</li>
+        <li>Perform more Jobs with one solution</li>
+        <li>Kill Jobs</li>
+        <li>Reduce delays between performing Jobs</li>
+        <li>Lower the cost without killing the Job (cheaper)</li>
+      </ul>
+
+      <h3>Composite mechanics</h3>
+      <ul>
+        <li>Climb to the next-higher Job</li>
+        <li>Take the Job off the person entirely</li>
+        <li>Split the benefit and deliver part of it earlier</li>
+        <li>And many others</li>
+      </ul>
+
+      <!-- Skeptic (Wes) #2 — plain text, no bold/italic combo -->
+      <blockquote>
+        <p>Wes: "OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</p>
+      </blockquote>
+
+      <p>What's new is the <em>unit of analysis</em>. UX talks about flows and screens; AJTBD talks about Jobs and graphs. A flow is a recording of one person doing one thing on one product. A graph is the space of Jobs across solutions, in which your product is one node and your competitors are others.</p>
+    </section>
+
+    <hr>
+
+    <!-- ==================== Strategy ==================== -->
+    <section id="algorithm-for-solving-business-problems">
+      <h2>The algorithm for solving business problems</h2>
+      <p>Business problems are solved by an algorithm of applying value mechanics to the Job Graphs of specific segments.</p>
+
+      <h3>Mechanic — <em>climb to the previous Job</em></h3>
+      <p>Aviasales (closest US analog: Kayak / Skyscanner) doesn't compete with sites that sell tickets. It performs the <em>previous</em> Job: "find the cheapest, most convenient tickets."</p>
+
+      <h3>Mechanic — <em>climb to the higher-level Job</em></h3>
+      <p>Anastasia Gusenstova, founder of LiFT — a personal-brand consultancy — found a segment of senior executives willing to pay $5,000/month for personal-brand work, where the core value is "do everything for me."</p>
+
+      <h3>Mechanic — <em>slide into a neighboring segment</em></h3>
+      <p>Yandex Taxi (Russia's Uber) started with the Economy tier. Over time it added neighboring segments by introducing tiers all the way up to Business and Elite.</p>
+
+      <p>I currently count more than 50 mechanics for solving business problems.<sup><a href="#fn1" id="fnref1">[1]</a></sup></p>
+
+      <p><strong>Innovation is nothing more than the application of one or more value mechanics and product-strategy mechanics — and that is an algorithm.</strong></p>
+    </section>
+
+    <hr>
+
+    <!-- ==================== Where AJTBD applies ==================== -->
+    <section id="where-ajtbd-applies">
+      <h2>Where AJTBD does and doesn't apply</h2>
+      <p>Because the main tools for studying Jobs and Job Graphs are interviews and surveys, if a person doesn't consciously know something, we can't reliably surface it.</p>
+      <p>Examples of products and Jobs where AJTBD has limited reach:</p>
+      <ul>
+        <li>Addictive products and behavior — social networks, gambling, alcohol, drugs</li>
+        <li>Trauma-driven behavior — psychological trauma can drive irrational action</li>
+        <li>Deep creative motivation — creative self-realization as the dominant force</li>
+        <li>Status, reproduction, and other strong unconscious needs</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <!-- ==================== Where this leads ==================== -->
+    <section id="where-this-leads">
+      <h2>Where this leads</h2>
+      <p>You now have one of the central insights of AJTBD: value is what happens when you transform a customer's Job Graph in a direction the brain notices as more energy-efficient than the alternatives.</p>
+      <p>In the next chapter we'll go one level deeper and ask: <em>what, exactly, is a Job?</em></p>
+
+      <!-- Skeptic (Wes) #3 -->
+      <blockquote>
+        <p>Wes: "Fine. I'll buy the Job Graph idea long enough to see what you do with it. But the moment one of these mechanics fails to predict a real product I know, I'm bringing it up."</p>
+      </blockquote>
+
+      <p>Bring it up. Most of the corrections to this methodology came from someone naming a product I hadn't accounted for.</p>
+    </section>
+
+    <!-- ==================== FOOTNOTES ==================== -->
+    <section class="footnotes" id="footnotes">
+      <hr>
+      <h3>Notes</h3>
+      <ol>
+        <li id="fn1">
+          The full catalog of 50+ mechanics is covered in Part III of this book.
+          <a href="#fnref1">↩</a>
+        </li>
+      </ol>
     </section>
 
   </main>
