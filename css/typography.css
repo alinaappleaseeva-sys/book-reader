@@ -1,30 +1,31 @@
 /* ==========================================================================
    Typography
-   Book Reader UI — design competition entry
+   Book Reader UI
 
-   Headings, body text, lists, inline elements, horizontal rules.
-   All sizes/weights reference tokens from tokens.css.
+   Principle: "boring base, rare special effects."
    
-   This file handles ONLY typographic elements.
-   Component-specific typography (skeptic, pull-quote, citations)
-   belongs in components.css.
+   The reading surface must be QUIET. One text color, one size,
+   one rhythm. No muted/strong variations within body copy.
+   Special blocks (skeptic, pull-quote, citations) are rare "events"
+   that stand out BECAUSE the base is calm — those go in components.css.
+
+   This file styles ONLY the base reading layer.
    ========================================================================== */
 
 /* -----------------------------------------------------------------------
    Headings — Space Grotesk
-   h1 = chapter title, h2 = section, h3 = subsection, h4 = minor heading
    ----------------------------------------------------------------------- */
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 500;
   color: var(--color-ink);
-  letter-spacing: var(--tracking-tight);
 }
 
 h1 {
   font-size: var(--text-3xl);
   line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-4);
 }
 
@@ -35,7 +36,6 @@ h2 {
   margin-bottom: var(--space-6);
 }
 
-/* First h2 after an hr or at the start of a section: less top margin */
 hr + section > h2:first-child,
 section:first-child > h2:first-child {
   margin-top: 0;
@@ -52,53 +52,37 @@ h4 {
   font-size: var(--text-lg);
   line-height: var(--leading-tight);
   font-weight: 600;
-  letter-spacing: var(--tracking-normal);
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
 }
 
 /* -----------------------------------------------------------------------
    Body text — Source Serif 4
+   One size. One color. One line-height. No exceptions in the flow.
    ----------------------------------------------------------------------- */
 
 p {
-  font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-body);
   max-width: var(--content-max);
   margin-bottom: var(--space-4);
 }
 
-/* Lead paragraph (subtitle under chapter title) */
-.lead {
-  font-size: var(--text-lg);
-  line-height: 1.65;
-  color: var(--color-ink-muted);
-  margin-bottom: var(--space-6);
-}
-
 /* -----------------------------------------------------------------------
-   Inline elements
+   Inline elements — minimal
+   Bold is bold. Italic is italic. That's it.
    ----------------------------------------------------------------------- */
 
-strong {
-  font-weight: 600;
-}
+strong { font-weight: 600; }
+em     { font-style: italic; }
 
-em {
-  font-style: italic;
-}
-
-/* Inline code */
+/* Inline code — quiet, almost invisible until you look */
 code {
   font-family: var(--font-mono);
-  font-size: 0.875em;          /* relative to parent, not root          */
+  font-size: 0.875em;
   background: var(--color-border-light);
-  color: var(--color-ink);
-  padding: 0.1em 0.35em;
-  border-radius: var(--radius-sm);
-  /* Prevent line-height disruption */
-  vertical-align: baseline;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
 }
 
 /* Code blocks */
@@ -107,7 +91,6 @@ pre {
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
   background: var(--color-border-light);
-  color: var(--color-ink);
   padding: var(--space-4) var(--space-6);
   border-radius: var(--radius-md);
   overflow-x: auto;
@@ -118,36 +101,32 @@ pre {
 pre code {
   background: none;
   padding: 0;
-  border-radius: 0;
   font-size: inherit;
 }
 
 /* -----------------------------------------------------------------------
-   Links (base styles are in base.css — here we add typographic context)
+   Links — calm, not screaming
+   One color, thin underline. Nothing more.
    ----------------------------------------------------------------------- */
 
-/* Links within body text get underline */
-p a,
-li a {
+a {
+  color: var(--color-accent);
   text-decoration: underline;
-  text-decoration-color: var(--color-accent-mid);
-  text-underline-offset: 3px;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 2px;
   text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--duration-fast) ease;
 }
 
-p a:hover,
-li a:hover {
-  text-decoration-color: var(--color-accent-hover);
+a:hover {
+  text-decoration-color: var(--color-accent);
 }
 
 /* -----------------------------------------------------------------------
-   Lists — restore browser defaults with our styling
-   UL: disc markers. OL: decimal.
-   Nested lists indent further.
+   Lists — same voice as body text, just structured
    ----------------------------------------------------------------------- */
 
 ul, ol {
-  font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: var(--leading-body);
   max-width: var(--content-max);
@@ -155,13 +134,8 @@ ul, ol {
   padding-left: var(--space-6);
 }
 
-ul {
-  list-style-type: disc;
-}
-
-ol {
-  list-style-type: decimal;
-}
+ul { list-style-type: disc; }
+ol { list-style-type: decimal; }
 
 li {
   margin-bottom: var(--space-2);
@@ -171,7 +145,6 @@ li:last-child {
   margin-bottom: 0;
 }
 
-/* Nested lists */
 li > ul,
 li > ol {
   margin-top: var(--space-2);
@@ -179,25 +152,19 @@ li > ol {
 }
 
 /* -----------------------------------------------------------------------
-   Blockquotes — standard
-   Component-specific quotes (skeptic, citation, client-quote)
-   will override these in components.css.
+   Blockquotes — quiet left indent, nothing fancy
+   Just the text, slightly indented. No border, no background.
+   Component-specific quotes override in components.css.
    ----------------------------------------------------------------------- */
 
 blockquote {
-  font-family: var(--font-body);
-  font-size: var(--text-base);
   font-style: italic;
-  line-height: var(--leading-body);
-  color: var(--color-ink-muted);
-  border-left: 3px solid var(--color-border);
   padding-left: var(--space-6);
   margin: var(--space-6) 0;
   max-width: var(--content-max);
 }
 
 blockquote p {
-  color: inherit;
   margin-bottom: var(--space-2);
 }
 
@@ -206,8 +173,7 @@ blockquote p:last-child {
 }
 
 /* -----------------------------------------------------------------------
-   Horizontal rules — section dividers
-   Already has basic styles in base.css, here we fine-tune
+   Horizontal rules — breath between sections
    ----------------------------------------------------------------------- */
 
 hr {
@@ -218,56 +184,52 @@ hr {
 }
 
 /* -----------------------------------------------------------------------
-   Figures and captions (basic typography only, layout in components.css)
+   Figures — just the caption styling
    ----------------------------------------------------------------------- */
 
 figcaption {
   font-family: var(--font-ui);
   font-size: var(--text-sm);
-  line-height: var(--leading-normal);
   color: var(--color-ink-muted);
   margin-top: var(--space-2);
 }
 
 /* -----------------------------------------------------------------------
-   Superscript (for footnote refs)
+   Footnote refs — small, non-disruptive
    ----------------------------------------------------------------------- */
 
 sup {
   font-size: 0.75em;
-  line-height: 0;           /* prevent disrupting body line-height     */
-  vertical-align: super;
+  line-height: 0;
 }
 
 sup a {
   text-decoration: none;
-  color: var(--color-accent);
+  color: var(--color-ink-muted);
   font-family: var(--font-ui);
-  font-weight: 500;
 }
 
 sup a:hover {
-  text-decoration: underline;
+  color: var(--color-accent);
 }
 
 /* -----------------------------------------------------------------------
-   Small / meta text — Inter
-   Used for chapter meta, part labels, timestamps
+   Utility classes — used sparingly in HTML
    ----------------------------------------------------------------------- */
 
-.meta {
-  font-family: var(--font-ui);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
+/* Chapter subtitle */
+.lead {
+  font-size: var(--text-lg);
   color: var(--color-ink-muted);
+  margin-bottom: var(--space-6);
 }
 
-.meta--faint {
+/* Part label above chapter title */
+.meta-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
   color: var(--color-ink-faint);
-}
-
-.meta--upper {
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  font-size: var(--text-xs);
+  margin-bottom: var(--space-2);
 }
