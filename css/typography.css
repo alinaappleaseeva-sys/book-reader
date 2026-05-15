@@ -40,13 +40,11 @@ section:first-child > h2:first-child {
   margin-top: 0;
 }
 
-/* H3 and H4 are the SAME visual level — near body size */
+/* H3 and H4 are the SAME visual level — same character as H2, just smaller */
 h3, h4 {
   font-size: var(--text-base);
   font-weight: 500;
-  line-height: var(--leading-body);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
+  line-height: var(--leading-tight);
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
 }
