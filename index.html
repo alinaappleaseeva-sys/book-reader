@@ -21,13 +21,7 @@
   <link rel="stylesheet" href="css/overlay.css">
 
   <style>
-    /* =================================================================
-       TEMPORARY layout — single column, centered.
-       Will be replaced by css/layout.css in Step 3.
-       
-       NOTE: no component styles here (skeptic, pull-quote, etc.)
-       Those will go directly into css/components.css in Step 4.
-       ================================================================= */
+    /* TEMPORARY — single column centering. Replaced by layout.css in Step 3. */
     .page {
       max-width: 780px;
       margin: 0 auto;
@@ -62,9 +56,9 @@
     <section id="introduction">
       <h2>Introduction</h2>
       <p>Jobs To Be Done is a beautiful and powerful theory. But what's the point of theory if it doesn't help you make better decisions?</p>
-      <p>The goal of Advanced Jobs To Be Done (AJTBD) is to give you <strong>algorithms</strong> for solving the business problems product teams actually face — and to answer the questions that come up when you launch and grow a product.</p>
+      <p>The goal of Advanced Jobs To Be Done (AJTBD) is to give you algorithms for solving the business problems product teams actually face — and to answer the questions that come up when you launch and grow a product.</p>
       <p>AJTBD is a practical extension of JTBD. To get from <em>"JTBD is a beautiful idea"</em> to <em>"JTBD that solves business problems,"</em> I spent five years searching for answers to <em>what is product value, and how do you create it?</em> I had to connect needs to goals to emotions, account for the brain's predictive function, develop a methodology for interviews and research using templates like <code>I want to {verb}</code>, and tie all of it back to the problems a product team needs to solve every week.</p>
-      <p>In this chapter you'll meet the foundational principles of AJTBD. You'll learn that <strong>product value is the ability to perform a customer's Jobs more energy-efficiently</strong>; you'll meet a new unit of analysis — the <strong>Job Graph</strong>; you'll see how the Job Graph generates algorithms for solving business problems; and you'll see where AJTBD does and doesn't apply.</p>
+      <p>In this chapter you'll meet the foundational principles of AJTBD. You'll learn that product value is the ability to perform a customer's Jobs more energy-efficiently; you'll meet a new unit of analysis — the Job Graph; you'll see how the Job Graph generates algorithms for solving business problems; and you'll see where AJTBD does and doesn't apply.</p>
     </section>
 
     <hr>
@@ -72,15 +66,15 @@
     <!-- ==================== Everyone says "create value" ==================== -->
     <section id="everyone-says-create-value">
       <h2>Everyone says "create value" — nobody explains how</h2>
-      <p>In the previous chapter we established that <strong>a Job is the root cause of any human action or purchase</strong>, and that Jobs are the <em>expected outcomes</em> the brain formulates to satisfy needs. So in segmentation, and in any product decision, we have to account for the customer's Jobs.</p>
+      <p>In the previous chapter we established that a Job is the root cause of any human action or purchase, and that Jobs are the <em>expected outcomes</em> the brain formulates to satisfy needs. So in segmentation, and in any product decision, we have to account for the customer's Jobs.</p>
       <p>But knowing the Jobs isn't enough. We have to offer the customer something that makes them choose our product over a competitor's.</p>
-      <p>Needs are the root cause of all action, but most people don't consciously notice them. The brain formulates goals to satisfy needs, and the goals are at least somewhat conscious. <strong>Goals = Jobs in AJTBD.</strong> But we still don't know how to make the customer pick <em>our</em> product. Presumably, <strong>value</strong> plays an important role in that choice.</p>
+      <p>Needs are the root cause of all action, but most people don't consciously notice them. The brain formulates goals to satisfy needs, and the goals are at least somewhat conscious. Goals = Jobs in AJTBD. But we still don't know how to make the customer pick <em>our</em> product. Presumably, value plays an important role in that choice.</p>
       <p>But the overwhelming majority of product builders have no operational understanding of how to create value, and that creates a low-grade frustration around the whole question.</p>
-      <p>Most people don't actually know the cause-and-effect chain that leads to a purchase. <strong>AJTBD describes that chain end-to-end and gives an algorithm for creating value.</strong></p>
+      <p>Most people don't actually know the cause-and-effect chain that leads to a purchase. AJTBD describes that chain end-to-end and gives an algorithm for creating value.</p>
 
-      <!-- Skeptic — unstyled placeholder, will be styled in components.css Step 4 -->
+      <!-- Skeptic (Wes) — plain italic, no bold inside -->
       <blockquote>
-        <p><strong>Wes:</strong> <em>"Hold on. 'Create value' is the most overused phrase in product. Every PM book repeats it like a mantra and then describes nothing. Why should I believe AJTBD has a real answer?"</em></p>
+        <p>Wes: "Hold on. 'Create value' is the most overused phrase in product. Every PM book repeats it like a mantra and then describes nothing. Why should I believe AJTBD has a real answer?"</p>
       </blockquote>
 
       <p>Fair. The proof is in the algorithm — by the end of this chapter you'll have one. If it doesn't help you make a single concrete decision differently than you would today, throw the book at the wall.</p>
@@ -112,18 +106,18 @@
       <p><em>"What is product value, and how do I create it?"</em> is one of the most important questions any product builder must be able to answer. Two years ago I realized I didn't have a good answer — and that the books I'd read on product management, economics, and behavioral psychology didn't either. So I had to do my own research.</p>
       <p>Economics textbooks claim that value = benefit – cost.</p>
 
-      <!-- Scholar citation — blockquote for now, styled in components.css Step 4 -->
+      <!-- Scholar citation -->
       <blockquote>
         <p>"The brain's primary job is to predict and manage the body's metabolic resources. Perception, emotion, and action are all consequences of that predictive energy management."</p>
-        <footer class="meta">— Lisa Feldman Barrett, <cite>Seven and a Half Lessons About the Brain</cite>, 2020</footer>
+        <p>— Lisa Feldman Barrett, <em>Seven and a Half Lessons About the Brain</em>, 2020</p>
       </blockquote>
 
-      <p>If Barrett is right, the brain is, above all else, a <strong>resource manager</strong>. It manages water, oxygen, glucose, fats, minerals, neurotransmitters — and it manages them like an investor: it spends X units of energy now in expectation of getting 3X in return.</p>
+      <p>If Barrett is right, the brain is, above all else, a resource manager. It manages water, oxygen, glucose, fats, minerals, neurotransmitters — and it manages them like an investor: it spends X units of energy now in expectation of getting 3X in return.</p>
       <p><strong>Value is performing the customer's Jobs more energy-efficiently than the alternatives.</strong></p>
-      <p>But the formula <code>value = benefit – cost</code> doesn't explain two important phenomena: <strong>the existence of "problems"</strong> and <strong>the surprise we feel when something is genuinely valuable.</strong></p>
+      <p>But the formula <code>value = benefit – cost</code> doesn't explain two important phenomena: the existence of "problems" and the surprise we feel when something is genuinely valuable.</p>
 
-      <h4>A note on expectations</h4>
-      <p>A thesis we'll come back to repeatedly: <strong>expectations (often unconscious) play a critical role in how the brain assesses the value of a particular solution.</strong></p>
+      <h3>A note on expectations</h3>
+      <p>Expectations (often unconscious) play a critical role in how the brain assesses the value of a particular solution. This is a thesis we'll come back to repeatedly.</p>
     </section>
 
     <hr>
@@ -131,11 +125,11 @@
     <!-- ==================== How value flows ==================== -->
     <section id="how-value-flows">
       <h2>How value flows from the Job Graph</h2>
-      <p>Knowing that value = "performing Jobs more energy-efficiently" doesn't, by itself, do anything for you. You need a <strong>repeatable algorithm</strong> for creating value.</p>
-      <p><strong>If you overlay the brain's drive toward energy-efficiency onto the Job Graph, it turns out that ABSOLUTELY EVERY successful product decision ever made can be explained as the optimization of a Job Graph.</strong></p>
-      <p><strong>Even simpler: value is created by transforming and simplifying the Job Graph.</strong></p>
+      <p>Knowing that value = "performing Jobs more energy-efficiently" doesn't, by itself, do anything for you. You need a repeatable algorithm for creating value.</p>
+      <p>If you overlay the brain's drive toward energy-efficiency onto the Job Graph, it turns out that absolutely every successful product decision ever made can be explained as the optimization of a Job Graph.</p>
+      <p>Even simpler: <strong>value is created by transforming and simplifying the Job Graph.</strong></p>
 
-      <!-- Single image — unstyled, will be proper figure in Step 5 -->
+      <!-- Single image -->
       <figure>
         <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_1.png"
              alt="How gas stations evolved from single-Job to multi-Job solutions"
@@ -146,29 +140,29 @@
       <p>Let's break down what a "problem" actually is:</p>
       <ol>
         <li>The Job isn't getting done, and the person feels negative emotions because they spent time and effort and got nothing.</li>
-        <li>They feel a <strong>dopamine dip</strong> because their predictive model was wrong.</li>
-        <li>They now have to perform <strong>extra Jobs</strong> to complete the higher-level Job. I call these <em>"Tax Jobs."</em></li>
+        <li>They feel a dopamine dip because their predictive model was wrong.</li>
+        <li>They now have to perform extra Jobs to complete the higher-level Job. I call these <em>"Tax Jobs."</em></li>
       </ol>
 
-      <p><strong>"Simpler", "easier", "more convenient" — these are ALWAYS the killing of Jobs.</strong></p>
+      <p>"Simpler", "easier", "more convenient" — these are always the killing of Jobs.</p>
 
       <h3>The algorithm for creating value</h3>
       <p>This gives us the following algorithm for creating value:</p>
       <ol>
-        <li><strong>Study the Job Graphs</strong> of your focus segments with their current solutions — including the problems they hit and the expectations they hold.</li>
-        <li><strong>Generate hypotheses</strong> for which value mechanics you can apply on top of those graphs.</li>
-        <li><strong>Rank those mechanics</strong> by:
+        <li>Study the Job Graphs of your focus segments with their current solutions — including the problems they hit and the expectations they hold.</li>
+        <li>Generate hypotheses for which value mechanics you can apply on top of those graphs.</li>
+        <li>Rank those mechanics by:
           <ul>
             <li>higher levels in the graph</li>
             <li>Jobs in the critical sequence</li>
-            <li>Jobs in the critical sequence that are performed worst, or where you see the largest customer drop-off</li>
+            <li>Jobs that are performed worst, or where you see the largest customer drop-off</li>
           </ul>
         </li>
       </ol>
 
       <p>I currently see more than 20 mechanics for value creation, including:</p>
 
-      <h4>Base mechanics</h4>
+      <h3>Base mechanics</h3>
       <ul>
         <li>Start performing a Job that wasn't being performed at all</li>
         <li>Fix problems</li>
@@ -178,7 +172,7 @@
         <li>Lower the cost without killing the Job (cheaper)</li>
       </ul>
 
-      <h4>Composite mechanics</h4>
+      <h3>Composite mechanics</h3>
       <ul>
         <li>Climb to the next-higher Job</li>
         <li>Take the Job off the person entirely</li>
@@ -186,12 +180,12 @@
         <li>And many others</li>
       </ul>
 
-      <!-- Skeptic #2 -->
+      <!-- Skeptic (Wes) #2 — plain text, no bold/italic combo -->
       <blockquote>
-        <p><strong>Wes:</strong> <em>"OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</em></p>
+        <p>Wes: "OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</p>
       </blockquote>
 
-      <p>What's new is the <em>unit of analysis</em>. UX talks about <strong>flows and screens</strong>; AJTBD talks about <strong>Jobs and graphs</strong>. A flow is a recording of one person doing one thing on one product. A graph is the <em>space</em> of Jobs across solutions, in which your product is one node and your competitors are others.</p>
+      <p>What's new is the <em>unit of analysis</em>. UX talks about flows and screens; AJTBD talks about Jobs and graphs. A flow is a recording of one person doing one thing on one product. A graph is the space of Jobs across solutions, in which your product is one node and your competitors are others.</p>
     </section>
 
     <hr>
@@ -199,16 +193,16 @@
     <!-- ==================== Strategy ==================== -->
     <section id="algorithm-for-solving-business-problems">
       <h2>The algorithm for solving business problems</h2>
-      <p>Business problems are solved by an algorithm of <strong>applying value mechanics to the Job Graphs of specific segments</strong>.</p>
+      <p>Business problems are solved by an algorithm of applying value mechanics to the Job Graphs of specific segments.</p>
 
-      <h3>Mechanic — "climb to the previous Job"</h3>
-      <p><strong>Aviasales</strong> (closest US analog: <strong>Kayak / Skyscanner</strong>) doesn't compete with sites that <em>sell</em> tickets. It performs the <em>previous</em> Job: <em>"find the cheapest, most convenient tickets."</em></p>
+      <h3>Mechanic — <em>climb to the previous Job</em></h3>
+      <p>Aviasales (closest US analog: Kayak / Skyscanner) doesn't compete with sites that sell tickets. It performs the <em>previous</em> Job: "find the cheapest, most convenient tickets."</p>
 
-      <h3>Mechanic — "climb to the higher-level Job"</h3>
-      <p><strong>Anastasia Gusenstova</strong>, founder of LiFT — a personal-brand consultancy — found a segment of senior executives willing to pay $5,000/month for personal-brand work, where the core value is "do everything for me."</p>
+      <h3>Mechanic — <em>climb to the higher-level Job</em></h3>
+      <p>Anastasia Gusenstova, founder of LiFT — a personal-brand consultancy — found a segment of senior executives willing to pay $5,000/month for personal-brand work, where the core value is "do everything for me."</p>
 
-      <h3>Mechanic — "slide into a neighboring segment"</h3>
-      <p><strong>Yandex Taxi</strong> (Russia's Uber) started with the <em>Economy</em> tier. Over time it added neighboring segments by introducing tiers all the way up to <em>Business</em> and <em>Elite</em>.</p>
+      <h3>Mechanic — <em>slide into a neighboring segment</em></h3>
+      <p>Yandex Taxi (Russia's Uber) started with the Economy tier. Over time it added neighboring segments by introducing tiers all the way up to Business and Elite.</p>
 
       <p>I currently count more than 50 mechanics for solving business problems.<sup><a href="#fn1" id="fnref1">[1]</a></sup></p>
 
@@ -220,13 +214,13 @@
     <!-- ==================== Where AJTBD applies ==================== -->
     <section id="where-ajtbd-applies">
       <h2>Where AJTBD does and doesn't apply</h2>
-      <p>Because the main tools for studying Jobs and Job Graphs are interviews and surveys, <strong>if a person doesn't consciously know something, we can't reliably surface it</strong>.</p>
+      <p>Because the main tools for studying Jobs and Job Graphs are interviews and surveys, if a person doesn't consciously know something, we can't reliably surface it.</p>
       <p>Examples of products and Jobs where AJTBD has limited reach:</p>
       <ul>
-        <li><strong>Addictive products and behavior</strong> — social networks, porn, gambling, alcohol, drugs</li>
-        <li><strong>Trauma-driven behavior</strong> — psychological trauma can drive irrational action</li>
-        <li><strong>Deep creative motivation</strong> — creative self-realization as the dominant force</li>
-        <li><strong>Status, reproduction, and other strong unconscious needs</strong></li>
+        <li>Addictive products and behavior — social networks, gambling, alcohol, drugs</li>
+        <li>Trauma-driven behavior — psychological trauma can drive irrational action</li>
+        <li>Deep creative motivation — creative self-realization as the dominant force</li>
+        <li>Status, reproduction, and other strong unconscious needs</li>
       </ul>
     </section>
 
@@ -235,12 +229,12 @@
     <!-- ==================== Where this leads ==================== -->
     <section id="where-this-leads">
       <h2>Where this leads</h2>
-      <p>You now have one of the central insights of AJTBD: <strong>value is what happens when you transform a customer's Job Graph in a direction the brain notices as more energy-efficient than the alternatives.</strong></p>
+      <p>You now have one of the central insights of AJTBD: value is what happens when you transform a customer's Job Graph in a direction the brain notices as more energy-efficient than the alternatives.</p>
       <p>In the next chapter we'll go one level deeper and ask: <em>what, exactly, is a Job?</em></p>
 
-      <!-- Skeptic #3 -->
+      <!-- Skeptic (Wes) #3 -->
       <blockquote>
-        <p><strong>Wes:</strong> <em>"Fine. I'll buy the Job Graph idea long enough to see what you do with it. But the moment one of these mechanics fails to predict a real product I know, I'm bringing it up."</em></p>
+        <p>Wes: "Fine. I'll buy the Job Graph idea long enough to see what you do with it. But the moment one of these mechanics fails to predict a real product I know, I'm bringing it up."</p>
       </blockquote>
 
       <p>Bring it up. Most of the corrections to this methodology came from someone naming a product I hadn't accounted for.</p>

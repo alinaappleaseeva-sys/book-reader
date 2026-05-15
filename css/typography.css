@@ -3,34 +3,33 @@
    Book Reader UI
 
    Principle: "boring base, rare special effects."
-   
-   The reading surface must be QUIET. One text color, one size,
-   one rhythm. No muted/strong variations within body copy.
-   Special blocks (skeptic, pull-quote, citations) are rare "events"
-   that stand out BECAUSE the base is calm — those go in components.css.
-
-   This file styles ONLY the base reading layer.
+   Rule: on any one screenful — max 1 bold heading, 1 blockquote, 1 emphasis.
+   Everything else is plain text.
    ========================================================================== */
 
 /* -----------------------------------------------------------------------
-   Headings — Space Grotesk
+   Headings — only THREE visual levels
+   
+   H1 — chapter title, big and bold
+   H2 — section heading, noticeably smaller
+   H3, H4 — same level: near-body size, distinguished by caps/spacing
    ----------------------------------------------------------------------- */
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
-  font-weight: 500;
   color: var(--color-ink);
 }
 
 h1 {
   font-size: var(--text-3xl);
+  font-weight: 600;
   line-height: var(--leading-heading);
-  letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-4);
 }
 
 h2 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
+  font-weight: 500;
   line-height: var(--leading-tight);
   margin-top: var(--space-16);
   margin-bottom: var(--space-6);
@@ -41,24 +40,20 @@ section:first-child > h2:first-child {
   margin-top: 0;
 }
 
-h3 {
-  font-size: var(--text-xl);
-  line-height: var(--leading-tight);
-  margin-top: var(--space-12);
-  margin-bottom: var(--space-4);
-}
-
-h4 {
-  font-size: var(--text-lg);
-  line-height: var(--leading-tight);
-  font-weight: 600;
+/* H3 and H4 are the SAME visual level — near body size */
+h3, h4 {
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: var(--leading-body);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
 }
 
 /* -----------------------------------------------------------------------
-   Body text — Source Serif 4
-   One size. One color. One line-height. No exceptions in the flow.
+   Body text
+   ONE size. ONE color. ONE line-height. ONE margin.
    ----------------------------------------------------------------------- */
 
 p {
@@ -70,13 +65,14 @@ p {
 
 /* -----------------------------------------------------------------------
    Inline elements — minimal
-   Bold is bold. Italic is italic. That's it.
+   italic = terms, names, quoting someone's words
+   bold = rare emphasis, max 1-2 per screen
    ----------------------------------------------------------------------- */
 
 strong { font-weight: 600; }
 em     { font-style: italic; }
 
-/* Inline code — quiet, almost invisible until you look */
+/* Inline code — quiet */
 code {
   font-family: var(--font-mono);
   font-size: 0.875em;
@@ -94,7 +90,7 @@ pre {
   padding: var(--space-4) var(--space-6);
   border-radius: var(--radius-md);
   overflow-x: auto;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
   max-width: var(--content-max);
 }
 
@@ -105,8 +101,7 @@ pre code {
 }
 
 /* -----------------------------------------------------------------------
-   Links — calm, not screaming
-   One color, thin underline. Nothing more.
+   Links — calm
    ----------------------------------------------------------------------- */
 
 a {
@@ -123,7 +118,7 @@ a:hover {
 }
 
 /* -----------------------------------------------------------------------
-   Lists — same voice as body text, just structured
+   Lists — same voice as body, same spacing
    ----------------------------------------------------------------------- */
 
 ul, ol {
@@ -152,13 +147,16 @@ li > ol {
 }
 
 /* -----------------------------------------------------------------------
-   Blockquotes — quiet left indent, nothing fancy
-   Just the text, slightly indented. No border, no background.
-   Component-specific quotes override in components.css.
+   Blockquotes — unified quiet style
+   Slightly smaller, more line-height, muted, indented.
+   Used for ALL quotes (Wes, scholar, client) until components.css
+   adds specific overrides.
    ----------------------------------------------------------------------- */
 
 blockquote {
-  font-style: italic;
+  font-size: var(--text-sm);
+  line-height: 1.9;
+  color: var(--color-ink-muted);
   padding-left: var(--space-6);
   margin: var(--space-6) 0;
   max-width: var(--content-max);
@@ -166,6 +164,9 @@ blockquote {
 
 blockquote p {
   margin-bottom: var(--space-2);
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 blockquote p:last-child {
@@ -173,7 +174,7 @@ blockquote p:last-child {
 }
 
 /* -----------------------------------------------------------------------
-   Horizontal rules — breath between sections
+   Horizontal rules
    ----------------------------------------------------------------------- */
 
 hr {
@@ -184,7 +185,7 @@ hr {
 }
 
 /* -----------------------------------------------------------------------
-   Figures — just the caption styling
+   Figures
    ----------------------------------------------------------------------- */
 
 figcaption {
@@ -195,7 +196,7 @@ figcaption {
 }
 
 /* -----------------------------------------------------------------------
-   Footnote refs — small, non-disruptive
+   Footnote refs
    ----------------------------------------------------------------------- */
 
 sup {
@@ -214,17 +215,15 @@ sup a:hover {
 }
 
 /* -----------------------------------------------------------------------
-   Utility classes — used sparingly in HTML
+   Utility classes
    ----------------------------------------------------------------------- */
 
-/* Chapter subtitle */
 .lead {
   font-size: var(--text-lg);
   color: var(--color-ink-muted);
   margin-bottom: var(--space-6);
 }
 
-/* Part label above chapter title */
 .meta-label {
   font-family: var(--font-ui);
   font-size: var(--text-xs);
