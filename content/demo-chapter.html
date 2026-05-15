@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Chapter — All Block Types</title>
+  <style>
+    /* Minimal reset for standalone preview */
+    body { font-family: Georgia, serif; max-width: 780px; margin: 2rem auto; padding: 0 1.5rem; line-height: 1.8; color: #1A1A1A; background: #F5F3EF; }
+    .skeptic, .citation, .pull-quote, .gallery, .two-pane, .footnotes { margin: 2rem 0; }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     DEMO CHAPTER — contains every content block type from §7.4
+     Used as the canonical test page for styling all components.
+     
+     Block types included:
+     1.  h1 (chapter title)
+     2.  h2, h3, h4 (sub-headings)
+     3.  Body paragraphs
+     4.  Bulleted list (ul)
+     5.  Numbered list (ol)
+     6.  Standard blockquote
+     7.  Skeptic voice (Wes) — 3 appearances
+     8.  Scholar citation (with source)
+     9.  Client quote
+     10. Inline code
+     11. Code block (pre > code)
+     12. Single image with caption (figure + figcaption)
+     13. Image gallery — gas station evolution (8 images)
+     14. Image gallery — strategy mechanics (5 images)
+     15. Pull-quote
+     16. Two-pane layout (image left, text right)
+     17. Footnotes
+     18. Horizontal rules (section dividers)
+     19. Bold / italic / emphasis
+     20. Chapter header with author + copy link
+     ============================================================ -->
+
+<!-- ==================== CHAPTER HEADER ==================== -->
+<header class="chapter-header">
+  <p class="chapter-header__part">Part I: Foundations</p>
+  <h1 class="chapter-header__title">How Value Flows from the Job Graph</h1>
+  <p class="chapter-header__subtitle"><em>An Introduction to Advanced Jobs To Be Done</em></p>
+  <div class="chapter-header__meta">
+    <div class="chapter-header__author">
+      <img class="chapter-header__avatar" src="../assets/images/avatar-placeholder.svg" alt="Ivan Zamesin" width="32" height="32">
+      <span class="chapter-header__author-name">Ivan Zamesin</span>
+    </div>
+    <button class="chapter-header__copy-link" data-url="/books/ajtbd/how-value-flows">Copy link</button>
+  </div>
+</header>
+
+<hr>
+
+<!-- ==================== SECTION: What this chapter is about ==================== -->
+<section id="what-this-chapter-is-about">
+  <h2>What this chapter is about</h2>
+
+  <!-- BLOCK TYPE: bulleted list (ul) -->
+  <ul>
+    <li>If you've heard about Jobs To Be Done and you're looking for ways to apply it in practice</li>
+    <li>If you want to learn how to create product value</li>
+    <li>If you've heard the term <em>Advanced Jobs To Be Done</em> and want to know what it actually means</li>
+  </ul>
+</section>
+
+<!-- ==================== SECTION: Introduction ==================== -->
+<section id="introduction">
+  <h2>Introduction</h2>
+
+  <!-- BLOCK TYPE: body paragraphs with bold + italic + inline code -->
+  <p>Jobs To Be Done is a beautiful and powerful theory. But what's the point of theory if it doesn't help you make better decisions?</p>
+
+  <p>The goal of Advanced Jobs To Be Done (AJTBD) is to give you <strong>algorithms</strong> for solving the business problems product teams actually face — and to answer the questions that come up when you launch and grow a product.</p>
+
+  <p>AJTBD is a practical extension of JTBD. To get from <em>"JTBD is a beautiful idea"</em> to <em>"JTBD that solves business problems,"</em> I spent five years searching for answers to <em>what is product value, and how do you create it?</em> I had to connect needs to goals to emotions, account for the brain's predictive function, develop a methodology for interviews and research using templates like <code>I want to {verb}</code>, and tie all of it back to the problems a product team needs to solve every week.</p>
+
+  <p>In this chapter you'll meet the foundational principles of AJTBD. You'll learn that <strong>product value is the ability to perform a customer's Jobs more energy-efficiently</strong>; you'll meet a new unit of analysis — the <strong>Job Graph</strong>; you'll see how the Job Graph generates algorithms for solving business problems; and you'll see where AJTBD does and doesn't apply.</p>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: Everyone says "create value" ==================== -->
+<section id="everyone-says-create-value">
+  <h2>Everyone says "create value" — nobody explains how</h2>
+
+  <p>In the previous chapter we established that <strong>a Job is the root cause of any human action or purchase</strong>, and that Jobs are the <em>expected outcomes</em> the brain formulates to satisfy needs.</p>
+
+  <p>But the overwhelming majority of product builders have no operational understanding of how to create value, and that creates a low-grade frustration around the whole question.</p>
+
+  <p>Most people don't actually know the cause-and-effect chain that leads to a purchase. <strong>AJTBD describes that chain end-to-end and gives an algorithm for creating value.</strong></p>
+
+  <!-- BLOCK TYPE: skeptic voice (Wes) — appearance 1 of 3 -->
+  <div class="skeptic" data-character="wes">
+    <div class="skeptic__header">
+      <span class="skeptic__icon">W</span>
+      <span class="skeptic__name">Wes</span>
+    </div>
+    <p class="skeptic__text">"Hold on. 'Create value' is the most overused phrase in product. Every PM book repeats it like a mantra and then describes nothing. Why should I believe AJTBD has a real answer?"</p>
+  </div>
+
+  <p>Fair. The proof is in the algorithm — by the end of this chapter you'll have one. If it doesn't help you make a single concrete decision differently than you would today, throw the book at the wall.</p>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: The Job Graph ==================== -->
+<section id="the-job-graph">
+  <h2>The Job Graph</h2>
+
+  <p><strong>The Job Graph is the hierarchy of Jobs a person performs in order to satisfy their needs.</strong></p>
+
+  <p>The Job Graph is the second unit of analysis in AJTBD (the first is the Job itself) and it is one of the main differences from classical JTBD.</p>
+
+  <!-- BLOCK TYPE: numbered list (ol) -->
+  <p>A real customer's Job Graph is determined by two things:</p>
+  <ol>
+    <li>The structure of the Job Graph that the <em>creators of the solution</em> baked into it.</li>
+    <li>The customer's <em>choice</em> of which solution to use to perform the Job.</li>
+  </ol>
+
+  <!-- BLOCK TYPE: pull-quote -->
+  <div class="pull-quote">
+    <p>You don't need to know the full Job Graph of a person, and you certainly don't need the full graph of all people. At any given moment, to solve your specific business problem, you only need a small slice of the graph.</p>
+  </div>
+
+  <p>Suppose you're building a new residential development for a real-estate developer. It makes no sense to study every Job of every person on Earth. From the entire Job Graph, what's actually valuable is the <strong>critical sequence</strong> of Jobs around buying, renovating, and moving into an apartment — for your focus segments only.</p>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: What is value? ==================== -->
+<section id="what-is-value">
+  <h2>What is value?</h2>
+
+  <p><em>"What is product value, and how do I create it?"</em> is one of the most important questions any product builder must be able to answer.</p>
+
+  <!-- BLOCK TYPE: scholar citation (with source) -->
+  <blockquote class="citation">
+    <p>"The brain's primary job is to predict and manage the body's metabolic resources. Perception, emotion, and action are all consequences of that predictive energy management."</p>
+    <footer class="citation__source">
+      — Lisa Feldman Barrett, <cite>Seven and a Half Lessons About the Brain</cite>, 2020
+    </footer>
+  </blockquote>
+
+  <p>If Barrett is right, the brain is, above all else, a <strong>resource manager</strong>. It manages water, oxygen, glucose, fats, minerals, neurotransmitters — and it manages them like an investor: it spends X units of energy now in expectation of getting 3X in return.</p>
+
+  <!-- BLOCK TYPE: client quote -->
+  <blockquote class="client-quote">
+    <p>"I realized I was paying the same for worse results. That's when I started looking for alternatives."</p>
+    <footer class="client-quote__source">— CMO, Series B SaaS company</footer>
+  </blockquote>
+
+  <p><strong>Value is performing the customer's Jobs more energy-efficiently than the alternatives.</strong></p>
+
+  <!-- BLOCK TYPE: code block (pre > code) -->
+  <pre><code>Value = (Benefit delivered) − (Cost to customer)
+        ────────────────────────────────────────
+        relative to customer's prediction/expectation</code></pre>
+
+  <!-- BLOCK TYPE: h4 sub-heading -->
+  <h4>A note on expectations</h4>
+  <p>A thesis we'll come back to repeatedly: <strong>expectations (often unconscious) play a critical role in how the brain assesses the value of a particular solution.</strong></p>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: How value flows ==================== -->
+<section id="how-value-flows">
+  <h2>How value flows from the Job Graph</h2>
+
+  <p><strong>If you overlay the brain's drive toward energy-efficiency onto the Job Graph, it turns out that ABSOLUTELY EVERY successful product decision ever made can be explained as the optimization of a Job Graph.</strong></p>
+
+  <!-- BLOCK TYPE: single image with caption -->
+  <figure class="figure">
+    <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_1.png"
+         alt="How gas stations evolved from single-Job to multi-Job solutions"
+         loading="lazy">
+    <figcaption>How the simplest gas stations — the ones that thirty years ago performed a single Job, "fill the car with fuel" — turned into roadside supermarkets with good coffee and food.</figcaption>
+  </figure>
+
+  <!-- BLOCK TYPE: image gallery — gas station evolution (8 images) -->
+  <div class="gallery" data-gallery="gas-station-evolution">
+    <div class="gallery__track">
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_2.png" alt="Hero wants coffee and fuel" loading="lazy">
+        <figcaption>Our hero wants to drive from New York to Boston. They want a coffee. They need a full tank.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_3.png" alt="Brain predicts value automatically" loading="lazy">
+        <figcaption>Their brain has already predicted the value, the cost, the benefit — automatically and unconsciously.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_4.png" alt="No fuel — a problem" loading="lazy">
+        <figcaption>They pull in. There's no fuel. That's a "problem." Negative emotions plus Tax Jobs.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_5.png" alt="Fix problems mechanic" loading="lazy">
+        <figcaption>The first value mechanic — fix problems.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_6.png" alt="Coffee shops at gas stations" loading="lazy">
+        <figcaption>Why coffee shops appeared at gas stations — performing several customer Jobs with one solution.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_7.png" alt="Two Jobs for less investment" loading="lazy">
+        <figcaption>Two Jobs performed for less total investment makes a viable alternative.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_8.png" alt="Killing Jobs creates positive prediction error" loading="lazy">
+        <figcaption>Simplifying a product by killing Jobs creates a positive prediction error and lifts satisfaction.</figcaption>
+      </figure>
+    </div>
+    <div class="gallery__nav">
+      <span class="gallery__counter">1 / 7</span>
+    </div>
+  </div>
+
+  <p><strong>"Simpler", "easier", "more convenient" — these are ALWAYS the killing of Jobs.</strong></p>
+
+  <!-- BLOCK TYPE: h3 sub-heading -->
+  <h3>The algorithm for creating value</h3>
+
+  <!-- BLOCK TYPE: numbered list (nested) -->
+  <ol>
+    <li><strong>Study the Job Graphs</strong> of your focus segments with their current solutions — including the problems they hit and the expectations they hold.</li>
+    <li><strong>Generate hypotheses</strong> for which value mechanics you can apply on top of those graphs.</li>
+    <li><strong>Rank those mechanics</strong> by:
+      <ul>
+        <li>higher levels in the graph</li>
+        <li>Jobs in the critical sequence</li>
+        <li>Jobs performed worst, or where you see the largest customer drop-off</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p>I currently see more than 20 mechanics for value creation, including:</p>
+
+  <h4>Base mechanics</h4>
+  <ul>
+    <li>Start performing a Job that wasn't being performed at all</li>
+    <li>Fix problems</li>
+    <li>Perform more Jobs with one solution</li>
+    <li>Kill Jobs</li>
+    <li>Reduce delays between performing Jobs</li>
+    <li>Lower the cost without killing the Job (cheaper)</li>
+  </ul>
+
+  <h4>Composite mechanics</h4>
+  <ul>
+    <li>Climb to the next-higher Job</li>
+    <li>Take the Job off the person entirely</li>
+    <li>Split the benefit and deliver part of it earlier</li>
+    <li>And many others</li>
+  </ul>
+
+  <!-- BLOCK TYPE: pull-quote -->
+  <div class="pull-quote">
+    <p>The master mechanic of value creation is killing Jobs — it sits at the root of many (if not all) of the others.</p>
+  </div>
+
+  <!-- BLOCK TYPE: skeptic voice — appearance 2 of 3 -->
+  <div class="skeptic" data-character="wes">
+    <div class="skeptic__header">
+      <span class="skeptic__icon">W</span>
+      <span class="skeptic__name">Wes</span>
+    </div>
+    <p class="skeptic__text">"OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</p>
+    <p class="skeptic__response">What's new is the <em>unit of analysis</em>. UX talks about <strong>flows and screens</strong>; AJTBD talks about <strong>Jobs and graphs</strong>. A flow is a recording of one person doing one thing. A graph is the <em>space</em> of Jobs across solutions. You can't see the move <em>"climb a level"</em> on a flow — there's no level in a flow. Most strategic moves in this book are invisible on a flow.</p>
+  </div>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: Strategy mechanics ==================== -->
+<section id="algorithm-for-solving-business-problems">
+  <h2>The algorithm for solving business problems</h2>
+
+  <p>The same energy-optimization principle, <strong>applied at higher levels of the graph</strong> and <strong>across segments grouped by higher-level Jobs</strong>, gives us strategic decisions.</p>
+
+  <!-- BLOCK TYPE: two-pane layout (image left, text right) -->
+  <div class="two-pane">
+    <div class="two-pane__image">
+      <figure>
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/5_1.png"
+             alt="Aviasales — climb to the previous Job"
+             loading="lazy">
+        <figcaption>Mechanic "climb to the previous Job" — Aviasales competes on finding tickets, not selling them.</figcaption>
+      </figure>
+    </div>
+    <div class="two-pane__text">
+      <h3>Mechanic — "climb to the previous Job"</h3>
+      <p><strong>Aviasales</strong> (closest US analog: <strong>Kayak / Skyscanner</strong>) doesn't compete with sites that <em>sell</em> tickets. It performs the <em>previous</em> Job: <em>"find the cheapest, most convenient tickets."</em> Its business model lets it find cheaper tickets and offer wider supply than any individual ticket-selling site can.</p>
+    </div>
+  </div>
+
+  <!-- BLOCK TYPE: image gallery — strategy mechanics (5 images) -->
+  <div class="gallery" data-gallery="strategy-mechanics">
+    <div class="gallery__track">
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/5_1.png" alt="Aviasales" loading="lazy">
+        <figcaption>Mechanic "climb to the previous Job" — Aviasales.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/5_2.png" alt="Domklik" loading="lazy">
+        <figcaption>Mechanic "climb to the previous Job" — Domklik becomes a lead funnel for mortgages.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/5_3.png" alt="LiFT" loading="lazy">
+        <figcaption>Mechanic "climb to the higher-level Job" — LiFT serves "run my personal brand."</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/5_4.png" alt="Yandex Taxi" loading="lazy">
+        <figcaption>Mechanic "slide into a neighboring segment" — Yandex Taxi tiers.</figcaption>
+      </figure>
+      <figure class="gallery__item">
+        <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/5_5.png" alt="50+ mechanics" loading="lazy">
+        <figcaption>More than 50 mechanics for solving business problems exist in the full catalog.</figcaption>
+      </figure>
+    </div>
+    <div class="gallery__nav">
+      <span class="gallery__counter">1 / 5</span>
+    </div>
+  </div>
+
+  <p>I currently count more than 50 mechanics for solving business problems.<sup><a href="#fn1" id="fnref1">[1]</a></sup></p>
+
+  <p><strong>Innovation is nothing more than the application of one or more value mechanics and product-strategy mechanics — and that is an algorithm.</strong></p>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: Limitations ==================== -->
+<section id="where-ajtbd-applies">
+  <h2>Where AJTBD does and doesn't apply</h2>
+
+  <p>Because the main tools for studying Jobs and Job Graphs are interviews and surveys, <strong>if a person doesn't consciously know something, we can't reliably surface it</strong>.</p>
+
+  <p>Examples of products and Jobs where AJTBD has limited reach:</p>
+  <ul>
+    <li><strong>Addictive products and behavior</strong> — social networks, porn, gambling, alcohol, drugs</li>
+    <li><strong>Trauma-driven behavior</strong> — psychological trauma can drive irrational action</li>
+    <li><strong>Deep creative motivation</strong> — creative self-realization as the dominant force</li>
+    <li><strong>Status, reproduction, and other strong unconscious needs</strong></li>
+  </ul>
+</section>
+
+<hr>
+
+<!-- ==================== SECTION: Where this leads ==================== -->
+<section id="where-this-leads">
+  <h2>Where this leads</h2>
+
+  <p>You now have one of the central insights of AJTBD: <strong>value is what happens when you transform a customer's Job Graph in a direction the brain notices as more energy-efficient than the alternatives.</strong></p>
+
+  <!-- BLOCK TYPE: skeptic voice — appearance 3 of 3 -->
+  <div class="skeptic" data-character="wes">
+    <div class="skeptic__header">
+      <span class="skeptic__icon">W</span>
+      <span class="skeptic__name">Wes</span>
+    </div>
+    <p class="skeptic__text">"Fine. I'll buy the Job Graph idea long enough to see what you do with it. But the moment one of these mechanics fails to predict a real product I know, I'm bringing it up."</p>
+    <p class="skeptic__response">Bring it up. Most of the corrections to this methodology came from someone naming a product I hadn't accounted for.</p>
+  </div>
+</section>
+
+<!-- ==================== FOOTNOTES ==================== -->
+<section class="footnotes">
+  <h3>Notes</h3>
+  <ol class="footnotes__list">
+    <li id="fn1">
+      The full catalog of 50+ mechanics is covered in Part III of this book. Each mechanic has a name, a definition, at least two real-world examples, and an algorithm for applying it.
+      <a href="#fnref1" class="footnotes__backref">↩</a>
+    </li>
+  </ol>
+</section>
+
+</body>
+</html>

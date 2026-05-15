@@ -1,0 +1,8 @@
+/* ==========================================================================
+   Layout — Three-column grid
+   Desktop (≥1280): left (80px) + middle (300px) + right (rest)
+   Tablet (768-1279): left + right (middle collapses)
+   Mobile (<768): single column
+   ========================================================================== */
+
+/* Styles will be implemented in Step 3 */
