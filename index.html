@@ -18,7 +18,7 @@
 
   <style>
     /* ===================================================================
-       Demo page styles — temporary, for accent color selection.
+       Demo page styles — temporary, for design token showcase.
        Will be replaced by layout.css + typography.css in later steps.
        =================================================================== */
 
@@ -50,80 +50,45 @@
       text-transform: uppercase;
     }
 
-    /* --- Accent Color Picker ----------------------------------------- */
+    /* --- Color Palette Display ---------------------------------------- */
 
-    .color-picker {
+    .palette {
       margin-bottom: var(--space-16);
     }
 
-    .color-picker__title {
+    .palette__title {
       font-family: var(--font-heading);
       font-size: var(--text-2xl);
       font-weight: 500;
-      margin-bottom: var(--space-2);
-    }
-
-    .color-picker__desc {
-      color: var(--color-ink-muted);
-      font-size: var(--text-sm);
-      font-family: var(--font-ui);
       margin-bottom: var(--space-6);
     }
 
-    .color-picker__options {
+    .palette__grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: var(--space-4);
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-3);
     }
 
-    .color-option {
-      border: 2px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6) var(--space-4);
-      cursor: pointer;
-      transition: border-color var(--duration-normal) var(--ease-out),
-                  box-shadow var(--duration-normal) var(--ease-out),
-                  transform var(--duration-fast) var(--ease-out);
-      text-align: center;
-      background: var(--color-paper-raised);
+    .palette__swatch {
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: var(--space-1);
     }
 
-    .color-option:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    }
-
-    .color-option.is-active {
-      border-color: var(--active-accent);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--active-accent) 15%, transparent);
-    }
-
-    .color-option__swatch {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      margin: 0 auto var(--space-3);
-    }
-
-    .color-option__name {
-      font-family: var(--font-heading);
-      font-size: var(--text-base);
-      font-weight: 500;
-      margin-bottom: var(--space-1);
-    }
-
-    .color-option__hex {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--color-ink-muted);
-    }
-
-    .color-option__vibe {
+    .palette__swatch-name {
       font-family: var(--font-ui);
       font-size: var(--text-xs);
-      color: var(--color-ink-faint);
-      margin-top: var(--space-2);
-      font-style: italic;
+      font-weight: 500;
+    }
+
+    .palette__swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      opacity: 0.7;
     }
 
     /* --- Preview Section --------------------------------------------- */
@@ -158,18 +123,6 @@
       margin-bottom: var(--space-4);
     }
 
-    .sample-body strong {
-      font-weight: 600;
-    }
-
-    .sample-body em {
-      font-style: italic;
-    }
-
-    .sample-body a {
-      /* inherits from base.css */
-    }
-
     .sample-body code {
       font-family: var(--font-mono);
       font-size: 0.875em;
@@ -202,9 +155,9 @@
       margin-bottom: var(--space-2);
     }
 
-    /* Sample blockquote (standard) */
+    /* Sample blockquote (scholar citation — uses secondary olive) */
     .sample-blockquote blockquote {
-      border-left: 3px solid var(--color-accent);
+      border-left: 3px solid var(--color-secondary);
       padding-left: var(--space-6);
       margin: var(--space-6) 0;
       font-style: italic;
@@ -219,7 +172,7 @@
       font-style: normal;
     }
 
-    /* Sample skeptic */
+    /* Sample skeptic (uses primary navy) */
     .sample-skeptic .skeptic {
       background: var(--color-accent-light);
       border-left: 3px solid var(--color-accent);
@@ -275,7 +228,6 @@
       max-width: 600px;
       margin: var(--space-12) auto;
       padding: 0 var(--space-6);
-      position: relative;
     }
 
     .pull-quote::before {
@@ -296,7 +248,7 @@
       margin: var(--space-6) auto 0;
     }
 
-    /* Sample link and button row */
+    /* Interactive elements */
     .sample-interactive {
       display: flex;
       flex-wrap: wrap;
@@ -307,7 +259,6 @@
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-2);
       background: var(--color-accent);
       color: var(--color-paper);
       font-family: var(--font-ui);
@@ -329,7 +280,6 @@
     .btn-secondary {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-2);
       background: transparent;
       color: var(--color-accent);
       font-family: var(--font-ui);
@@ -365,26 +315,6 @@
       font-size: var(--text-xs);
       color: var(--color-ink-faint);
       margin-top: var(--space-2);
-    }
-
-    /* Spacing blocks demo */
-    .spacing-demo {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-3);
-      align-items: flex-end;
-    }
-
-    .spacing-block {
-      background: var(--color-accent-light);
-      border: 1px solid var(--color-accent-mid);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--color-ink-muted);
     }
 
     /* Font specimens */
@@ -451,75 +381,66 @@
 
     <!-- Header -->
     <header class="demo__header">
-      <h1 class="demo__title">Book Reader — Design Tokens</h1>
-      <p class="demo__subtitle">Step 1 · Choose your accent color</p>
+      <h1 class="demo__title">Book Reader — Design System</h1>
+      <p class="demo__subtitle">Step 1 · Design Tokens Locked In</p>
     </header>
 
     <!-- ============================================================
-         ACCENT COLOR PICKER
+         COLOR PALETTE
          ============================================================ -->
-    <section class="color-picker">
-      <h2 class="color-picker__title">Accent Color</h2>
-      <p class="color-picker__desc">Click a swatch to preview how it affects the entire page — links, blockquotes, the Skeptic, pull-quotes, buttons, and text selection.</p>
+    <section class="palette">
+      <h2 class="palette__title">Color Palette</h2>
 
-      <div class="color-picker__options">
-        <button class="color-option is-active" data-accent="olive" style="--active-accent: #2D4A3E"
-                data-accent-val="#2D4A3E"
-                data-accent-hover="#1F3A2F"
-                data-accent-light="#E8EFEB"
-                data-accent-mid="#B8CFC0"
-                data-selection="#D4E4DA">
-          <div class="color-option__swatch" style="background: #2D4A3E"></div>
-          <div class="color-option__name">Dark Olive</div>
-          <div class="color-option__hex">#2D4A3E</div>
-          <div class="color-option__vibe">quiet power, natural authority</div>
-        </button>
+      <div class="palette__grid">
+        <!-- Base -->
+        <div class="palette__swatch" style="background: #F5F3EF; border: 1px solid #E5E1D8;">
+          <span class="palette__swatch-name" style="color: #1A1A1A;">Paper</span>
+          <span class="palette__swatch-hex" style="color: #6B7280;">#F5F3EF</span>
+        </div>
+        <div class="palette__swatch" style="background: #1A1A1A;">
+          <span class="palette__swatch-name" style="color: #F5F3EF;">Ink</span>
+          <span class="palette__swatch-hex" style="color: #9CA3AF;">#1A1A1A</span>
+        </div>
+        <div class="palette__swatch" style="background: #6B7280;">
+          <span class="palette__swatch-name" style="color: #F5F3EF;">Ink Muted</span>
+          <span class="palette__swatch-hex" style="color: #D0DAE8;">#6B7280</span>
+        </div>
 
-        <button class="color-option" data-accent="navy" style="--active-accent: #2A3F5F"
-                data-accent-val="#2A3F5F"
-                data-accent-hover="#1E3050"
-                data-accent-light="#E6EBF2"
-                data-accent-mid="#B3C3D9"
-                data-selection="#D0DAE8">
-          <div class="color-option__swatch" style="background: #2A3F5F"></div>
-          <div class="color-option__name">Deep Navy</div>
-          <div class="color-option__hex">#2A3F5F</div>
-          <div class="color-option__vibe">corporate confidence, depth</div>
-        </button>
+        <!-- Primary — Deep Navy -->
+        <div class="palette__swatch" style="background: #2A3F5F;">
+          <span class="palette__swatch-name" style="color: #F5F3EF;">Navy (Primary)</span>
+          <span class="palette__swatch-hex" style="color: #B3C3D9;">#2A3F5F</span>
+        </div>
+        <div class="palette__swatch" style="background: #E6EBF2; border: 1px solid #B3C3D9;">
+          <span class="palette__swatch-name" style="color: #2A3F5F;">Navy Light</span>
+          <span class="palette__swatch-hex" style="color: #6B7280;">#E6EBF2</span>
+        </div>
 
-        <button class="color-option" data-accent="terracotta" style="--active-accent: #8B5E3C"
-                data-accent-val="#8B5E3C"
-                data-accent-hover="#744D30"
-                data-accent-light="#F2EBE4"
-                data-accent-mid="#D9C4B0"
-                data-selection="#E8DDD2">
-          <div class="color-option__swatch" style="background: #8B5E3C"></div>
-          <div class="color-option__name">Muted Terracotta</div>
-          <div class="color-option__hex">#8B5E3C</div>
-          <div class="color-option__vibe">warmth, earthiness, old library</div>
-        </button>
+        <!-- Secondary — Dark Olive -->
+        <div class="palette__swatch" style="background: #2D4A3E;">
+          <span class="palette__swatch-name" style="color: #F5F3EF;">Olive (Secondary)</span>
+          <span class="palette__swatch-hex" style="color: #B8CFC0;">#2D4A3E</span>
+        </div>
+        <div class="palette__swatch" style="background: #E8EFEB; border: 1px solid #B8CFC0;">
+          <span class="palette__swatch-name" style="color: #2D4A3E;">Olive Light</span>
+          <span class="palette__swatch-hex" style="color: #6B7280;">#E8EFEB</span>
+        </div>
 
-        <button class="color-option" data-accent="indigo" style="--active-accent: #4A4680"
-                data-accent-val="#4A4680"
-                data-accent-hover="#3B376A"
-                data-accent-light="#ECEAF4"
-                data-accent-mid="#C4C0DC"
-                data-selection="#D8D5E8">
-          <div class="color-option__swatch" style="background: #4A4680"></div>
-          <div class="color-option__name">Soft Indigo</div>
-          <div class="color-option__hex">#4A4680</div>
-          <div class="color-option__vibe">creative intellect, subtle boldness</div>
-        </button>
+        <!-- Border -->
+        <div class="palette__swatch" style="background: #E5E1D8; border: 1px solid #D0C8B8;">
+          <span class="palette__swatch-name" style="color: #1A1A1A;">Border</span>
+          <span class="palette__swatch-hex" style="color: #6B7280;">#E5E1D8</span>
+        </div>
       </div>
     </section>
 
     <hr class="demo__divider">
 
     <!-- ============================================================
-         PREVIEW: how the accent color looks across components
+         LIVE PREVIEW
          ============================================================ -->
     <section class="preview">
-      <h2 class="preview__title">Live Preview</h2>
+      <h2 class="preview__title">Component Preview</h2>
 
       <!-- Body text -->
       <div class="preview__section">
@@ -540,9 +461,9 @@
         </div>
       </div>
 
-      <!-- Blockquote -->
+      <!-- Scholar citation (uses secondary olive) -->
       <div class="preview__section">
-        <p class="preview__label">Scholar Citation</p>
+        <p class="preview__label">Scholar Citation · Secondary Olive accent</p>
         <div class="sample-blockquote">
           <blockquote>
             "The brain's primary job is to predict and manage the body's metabolic resources. Perception, emotion, and action are all consequences of that predictive energy management."
@@ -551,9 +472,9 @@
         </div>
       </div>
 
-      <!-- Skeptic -->
+      <!-- Skeptic (uses primary navy) -->
       <div class="preview__section">
-        <p class="preview__label">Skeptic Voice</p>
+        <p class="preview__label">Skeptic Voice · Primary Navy accent</p>
         <div class="sample-skeptic">
           <div class="skeptic">
             <div class="skeptic__header">
@@ -589,7 +510,7 @@
       <div class="preview__section">
         <p class="preview__label">Text Selection</p>
         <div class="sample-selection">
-          <p>Try selecting this text with your mouse to see the accent-colored selection highlight. Each color option has its own selection color that harmonizes with the main accent.</p>
+          <p>Try selecting this text with your mouse to see the Deep Navy selection highlight. The cool blue selection contrasts nicely with the warm paper background.</p>
           <p class="hint">↑ Select the text above</p>
         </div>
       </div>
@@ -626,53 +547,7 @@
       </div>
     </section>
 
-    <hr class="demo__divider">
-
-    <!-- ============================================================
-         SPACING SCALE
-         ============================================================ -->
-    <section class="preview">
-      <h2 class="preview__title">Spacing Scale</h2>
-      <p class="preview__label">4px base unit · multiples</p>
-      <div class="spacing-demo">
-        <div class="spacing-block" style="width: 4px; height: 4px;" title="4px"></div>
-        <div class="spacing-block" style="width: 8px; height: 8px;">8</div>
-        <div class="spacing-block" style="width: 12px; height: 12px;">12</div>
-        <div class="spacing-block" style="width: 16px; height: 16px;">16</div>
-        <div class="spacing-block" style="width: 24px; height: 24px;">24</div>
-        <div class="spacing-block" style="width: 32px; height: 32px;">32</div>
-        <div class="spacing-block" style="width: 48px; height: 48px;">48</div>
-        <div class="spacing-block" style="width: 64px; height: 64px;">64</div>
-        <div class="spacing-block" style="width: 96px; height: 96px;">96</div>
-      </div>
-    </section>
-
   </main>
-
-  <!-- ================================================================
-       Accent Color Switcher — updates CSS custom properties live
-       ================================================================ -->
-  <script>
-    (function () {
-      const root = document.documentElement;
-      const options = document.querySelectorAll('.color-option');
-
-      options.forEach(option => {
-        option.addEventListener('click', () => {
-          // Remove active from all
-          options.forEach(o => o.classList.remove('is-active'));
-          option.classList.add('is-active');
-
-          // Update CSS custom properties on :root
-          root.style.setProperty('--color-accent', option.dataset.accentVal);
-          root.style.setProperty('--color-accent-hover', option.dataset.accentHover);
-          root.style.setProperty('--color-accent-light', option.dataset.accentLight);
-          root.style.setProperty('--color-accent-mid', option.dataset.accentMid);
-          root.style.setProperty('--color-selection', option.dataset.selection);
-        });
-      });
-    })();
-  </script>
 
 </body>
 </html>

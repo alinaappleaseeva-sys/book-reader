@@ -26,41 +26,25 @@
   --color-border-light:  #F0EDE6;   /* very subtle divider                     */
 
   /* -----------------------------------------------------------------------
-     Colors — Accent  
-     Shown as switchable variants. User picks one.
-     Default: olive. Switch by changing --color-accent and related.
+     Colors — Primary Accent: Deep Navy
+     "Serious, strategic, B2B grown-up product."
+     Used for: links, active TOC items, action buttons, focus rings.
      ----------------------------------------------------------------------- */
-
-  /* Option A — Dark Olive (default) "quiet power, natural authority" */
-  --color-accent:        #2D4A3E;
-  --color-accent-hover:  #1F3A2F;
-  --color-accent-light:  #E8EFEB;
-  --color-accent-mid:    #B8CFC0;
-  --color-selection:     #D4E4DA;
-
-  /* Option B — Deep Navy          (uncomment to switch)
   --color-accent:        #2A3F5F;
   --color-accent-hover:  #1E3050;
   --color-accent-light:  #E6EBF2;
   --color-accent-mid:    #B3C3D9;
   --color-selection:     #D0DAE8;
-  */
 
-  /* Option C — Muted Terracotta   (uncomment to switch)
-  --color-accent:        #8B5E3C;
-  --color-accent-hover:  #744D30;
-  --color-accent-light:  #F2EBE4;
-  --color-accent-mid:    #D9C4B0;
-  --color-selection:     #E8DDD2;
-  */
-
-  /* Option D — Soft Indigo        (uncomment to switch)
-  --color-accent:        #4A4680;
-  --color-accent-hover:  #3B376A;
-  --color-accent-light:  #ECEAF4;
-  --color-accent-mid:    #C4C0DC;
-  --color-selection:     #D8D5E8;
-  */
+  /* -----------------------------------------------------------------------
+     Colors — Secondary Accent: Dark Olive
+     "Quiet power, natural authority."
+     Used for: scholar citations, subtle borders, secondary icons.
+     ----------------------------------------------------------------------- */
+  --color-secondary:       #2D4A3E;
+  --color-secondary-hover: #1F3A2F;
+  --color-secondary-light: #E8EFEB;
+  --color-secondary-mid:   #B8CFC0;
 
   /* -----------------------------------------------------------------------
      Typography — Font families
