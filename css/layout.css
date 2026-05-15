@@ -1,8 +1,232 @@
 /* ==========================================================================
    Layout — Three-column grid
-   Desktop (≥1280): left (80px) + middle (300px) + right (rest)
-   Tablet (768-1279): left + right (middle collapses)
-   Mobile (<768): single column
+   Book Reader UI
+   
+   Desktop (≥1280px): left (80px) + middle (300px) + right (rest)
+   Tablet (768–1279px): left (80px) + right (rest), middle collapses
+   Mobile (<768px): single column, no sidebar
+   
+   Left & middle columns are sticky. Right column scrolls.
    ========================================================================== */
 
-/* Styles will be implemented in Step 3 */
+/* -----------------------------------------------------------------------
+   Site shell — the outermost wrapper
+   ----------------------------------------------------------------------- */
+
+.site {
+  display: grid;
+  min-height: 100vh;
+}
+
+/* -----------------------------------------------------------------------
+   Desktop: three columns
+   ----------------------------------------------------------------------- */
+
+@media (min-width: 1280px) {
+  .site {
+    grid-template-columns: 80px 300px 1fr;
+    grid-template-areas: "left middle right";
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Tablet: two columns (left + right)
+   ----------------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .site {
+    grid-template-columns: 80px 1fr;
+    grid-template-areas: "left right";
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Mobile: single column
+   ----------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .site {
+    grid-template-columns: 1fr;
+    grid-template-areas: "right";
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Left column — logo + global nav
+   Drawn in v1 for composition, non-functional.
+   ----------------------------------------------------------------------- */
+
+.col-left {
+  grid-area: left;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: var(--space-6) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid var(--color-border-light);
+}
+
+.col-left__logo {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink);
+  text-decoration: none;
+  margin-bottom: var(--space-8);
+}
+
+.col-left__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.col-left__nav-item {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+  text-decoration: none;
+  text-align: center;
+  transition: color var(--duration-fast) ease;
+}
+
+.col-left__nav-item:hover {
+  color: var(--color-ink-muted);
+}
+
+/* Hide on mobile */
+@media (max-width: 767px) {
+  .col-left {
+    display: none;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Middle column — book context / chapter TOC
+   ----------------------------------------------------------------------- */
+
+.col-middle {
+  grid-area: middle;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: var(--space-12) var(--space-6);
+  border-right: 1px solid var(--color-border-light);
+}
+
+.col-middle__toc-trigger {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  cursor: pointer;
+  margin-bottom: var(--space-6);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 2px;
+}
+
+.col-middle__part-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-3);
+}
+
+.col-middle__chapters {
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--space-8);
+}
+
+.col-middle__chapter-item {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-1);
+}
+
+.col-middle__chapter-link {
+  color: var(--color-ink-muted);
+  text-decoration: none;
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast) ease,
+              background var(--duration-fast) ease;
+}
+
+.col-middle__chapter-link:hover {
+  color: var(--color-ink);
+  background: var(--color-border-light);
+}
+
+.col-middle__chapter-link--active {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Section anchors (h2/h3 of current chapter) */
+.col-middle__sections {
+  list-style: none;
+  padding: 0;
+}
+
+.col-middle__section-item {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-1);
+}
+
+.col-middle__section-link {
+  color: var(--color-ink-faint);
+  text-decoration: none;
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast) ease;
+}
+
+.col-middle__section-link:hover {
+  color: var(--color-ink-muted);
+}
+
+.col-middle__section-link--active {
+  color: var(--color-accent);
+}
+
+/* Hide on tablet and mobile */
+@media (max-width: 1279px) {
+  .col-middle {
+    display: none;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Right column — chapter content
+   ----------------------------------------------------------------------- */
+
+.col-right {
+  grid-area: right;
+  padding: var(--space-12) var(--space-8);
+  max-width: 820px;
+}
+
+/* On wide screens, add left margin so text doesn't hug the border */
+@media (min-width: 1280px) {
+  .col-right {
+    padding-left: var(--space-12);
+  }
+}
+
+/* Mobile: tighter padding */
+@media (max-width: 767px) {
+  .col-right {
+    padding: var(--space-8) var(--space-4);
+  }
+}
