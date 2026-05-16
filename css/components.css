@@ -1,7 +1,114 @@
 /* ==========================================================================
-   Components — content blocks for chapter reading
-   Blockquotes, Skeptic voice, scholar citations, pull-quotes,
-   image galleries, two-pane layout, footnotes, callouts
+   Components — special content blocks
+   Book Reader UI
+
+   These blocks are rare "events" in the reading flow.
+   They work BECAUSE the base typography is quiet.
+   
+   Each block has ONE distinguishing trait — not three.
+   Skeptic: tinted background.
+   Citation: left border + source line.
+   Pull-quote: size + centering.
    ========================================================================== */
 
-/* Styles will be implemented in Steps 4-6 */
+/* -----------------------------------------------------------------------
+   Dialog — Skeptic ↔ Author (Variant A: minimal bubbles)
+   
+   Two cards with the same background. Speaker identity via label only.
+   Author card symmetrically offset: same indent left = overhang right.
+   ----------------------------------------------------------------------- */
+
+.dialog {
+  margin: var(--space-12) 0;
+  max-width: var(--content-max);
+}
+
+/* Shared card style — generous, symmetric padding */
+.dialog__skeptic,
+.dialog__author {
+  background: rgba(42, 63, 95, 0.05);
+  border-radius: 10px 10px 10px 2px;
+  padding: var(--space-6);
+}
+
+/* Skeptic: flush left */
+.dialog__skeptic {
+  margin-bottom: 10px;
+}
+
+/* Author: symmetric offset — 40px indent left = 40px overhang right */
+.dialog__author {
+  margin-left: 40px;
+  margin-right: -40px;
+}
+
+/* Speaker label */
+.dialog__label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  margin-bottom: var(--space-2);
+}
+
+/* Dialog text — both speakers in italic, in quotes */
+.dialog__text {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  font-style: italic;
+}
+
+/* -----------------------------------------------------------------------
+   Scholar citation
+   
+   Academic quote with source attribution.
+   ONE signal: a thin left border in the secondary (olive) color.
+   ----------------------------------------------------------------------- */
+
+.citation {
+  border-left: 2px solid var(--color-secondary);
+  padding-left: var(--space-6);
+  margin: var(--space-8) 0;
+  max-width: var(--content-max);
+}
+
+.citation__text {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  font-style: italic;
+}
+
+.citation__source {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+  margin-top: var(--space-2);
+}
+
+/* -----------------------------------------------------------------------
+   Pull-quote
+   
+   A key idea pulled out of the text for emphasis.
+   ONE signal: larger size, centered.
+   Appears ~1-2 times per chapter maximum.
+   ----------------------------------------------------------------------- */
+
+.pull-quote {
+  font-size: var(--text-pull);
+  line-height: 1.5;
+  font-style: italic;
+  text-align: center;
+  max-width: 600px;
+  margin: var(--space-12) auto;
+  padding: 0 var(--space-6);
+}
+
+/* -----------------------------------------------------------------------
+   Chapter header
+   ----------------------------------------------------------------------- */
+
+.chapter-header {
+  margin-bottom: var(--space-4);
+}

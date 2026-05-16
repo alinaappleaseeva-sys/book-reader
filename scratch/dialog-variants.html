@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeptic Dialog — 3 Variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <style>
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 48px 24px 120px;
+    }
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      margin-top: 64px;
+      margin-bottom: 8px;
+      color: var(--color-accent);
+    }
+    .desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--color-ink-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-border);
+      margin: 48px 0;
+    }
+
+    /* Context paragraph — simulating book flow */
+    .context {
+      margin-bottom: 24px;
+    }
+    .after {
+      margin-top: 24px;
+    }
+
+    /* === SHARED: icon + label === */
+    .label-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .label-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .label-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ================================================================
+       VARIANT A — Minimal bubbles (two cards, different tones)
+       ================================================================ */
+
+    .va-wrapper {
+      margin: 32px 0;
+      max-width: 640px;
+    }
+    .va-skeptic {
+      background: rgba(42, 63, 95, 0.05);
+      border-radius: 12px 12px 12px 2px;
+      padding: 20px 24px;
+      margin-bottom: 8px;
+    }
+    .va-skeptic .label-text {
+      color: var(--color-accent);
+    }
+    .va-skeptic .label-icon {
+      color: var(--color-accent);
+    }
+    .va-skeptic__text {
+      font-style: italic;
+      line-height: 1.75;
+    }
+    .va-author {
+      background: rgba(45, 74, 62, 0.05);
+      border-radius: 12px 12px 12px 2px;
+      padding: 20px 24px;
+      margin-left: 32px;
+    }
+    .va-author .label-text {
+      color: var(--color-secondary);
+    }
+    .va-author .label-icon {
+      color: var(--color-secondary);
+    }
+    .va-author__text {
+      line-height: 1.75;
+    }
+
+    /* ================================================================
+       VARIANT B — Two separate blocks (stacked, no indent)
+       ================================================================ */
+
+    .vb-skeptic {
+      background: rgba(42, 63, 95, 0.04);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 32px 0 0;
+      max-width: 640px;
+    }
+    .vb-skeptic .label-text {
+      color: var(--color-accent);
+    }
+    .vb-skeptic .label-icon {
+      color: var(--color-accent);
+    }
+    .vb-skeptic__text {
+      font-style: italic;
+      line-height: 1.75;
+    }
+    .vb-author {
+      border-left: 2px solid var(--color-border);
+      padding: 16px 24px;
+      margin: 0 0 32px;
+      max-width: 640px;
+    }
+    .vb-author .label-text {
+      color: var(--color-ink-muted);
+    }
+    .vb-author .label-icon {
+      color: var(--color-ink-muted);
+    }
+    .vb-author__text {
+      line-height: 1.75;
+    }
+
+    /* ================================================================
+       VARIANT C — One block, labeled sections inside
+       ================================================================ */
+
+    .vc-dialog {
+      background: rgba(42, 63, 95, 0.04);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 32px 0;
+      max-width: 640px;
+    }
+    .vc-question {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .vc-question .label-text {
+      color: var(--color-accent);
+    }
+    .vc-question .label-icon {
+      color: var(--color-accent);
+    }
+    .vc-question__text {
+      font-style: italic;
+      line-height: 1.75;
+    }
+    .vc-answer .label-text {
+      color: var(--color-ink-muted);
+    }
+    .vc-answer .label-icon {
+      color: var(--color-ink-muted);
+    }
+    .vc-answer__text {
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <h1>Skeptic dialog — three layout variants</h1>
+    <p class="desc">Each variant uses the same content (Wes #2 from the demo chapter). Compare how clearly the speaker switch reads. All three are intentionally quiet and book-appropriate.</p>
+
+    <!-- ================================================================
+         VARIANT A — Minimal bubbles
+         ================================================================ -->
+    <h2>Variant A — Minimal bubbles</h2>
+    <p class="desc">Two separate cards with slightly different shapes and colors. Skeptic = navy tint, flush left. Author = olive tint, indented right. No comic-style tails, but the indent and color shift clearly signal a new speaker.</p>
+
+    <p class="context">I currently see more than 20 mechanics for value creation, including base mechanics (fix problems, kill Jobs, perform more Jobs with one solution) and composite mechanics (climb to the next-higher Job, take the Job off the person entirely).</p>
+
+    <div class="va-wrapper">
+      <div class="va-skeptic">
+        <div class="label-row">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><path d="M12 3V1m0 0L10.5 2.5M12 1l1.5 1.5"/></svg>
+          <span class="label-text">Skeptic · Wes</span>
+        </div>
+        <p class="va-skeptic__text">"OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</p>
+      </div>
+      <div class="va-author">
+        <div class="label-row">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/></svg>
+          <span class="label-text">Author</span>
+        </div>
+        <p class="va-author__text">What's new is the <em>unit of analysis</em>. UX talks about flows and screens; AJTBD talks about Jobs and graphs. A flow is a recording of one person doing one thing on one product. A graph is the space of Jobs across solutions, in which your product is one node and your competitors are others.</p>
+      </div>
+    </div>
+
+    <p class="after">The same energy-optimization principle, applied at higher levels of the graph and across segments grouped by higher-level Jobs, gives us strategic decisions.</p>
+
+    <hr>
+
+    <!-- ================================================================
+         VARIANT B — Two separate blocks
+         ================================================================ -->
+    <h2>Variant B — Two stacked blocks</h2>
+    <p class="desc">Skeptic gets a tinted card. Author gets a plain left-border block (like a reply). No indent — they stack vertically but have clearly different visual weights. The author's block is lighter, more understated.</p>
+
+    <p class="context">I currently see more than 20 mechanics for value creation, including base mechanics (fix problems, kill Jobs, perform more Jobs with one solution) and composite mechanics (climb to the next-higher Job, take the Job off the person entirely).</p>
+
+    <div class="vb-skeptic">
+      <div class="label-row">
+        <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><path d="M12 3V1m0 0L10.5 2.5M12 1l1.5 1.5"/></svg>
+        <span class="label-text">Skeptic · Wes</span>
+      </div>
+      <p class="vb-skeptic__text">"OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</p>
+    </div>
+    <div class="vb-author">
+      <div class="label-row">
+        <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/></svg>
+        <span class="label-text">Author</span>
+      </div>
+      <p class="vb-author__text">What's new is the <em>unit of analysis</em>. UX talks about flows and screens; AJTBD talks about Jobs and graphs. A flow is a recording of one person doing one thing on one product. A graph is the space of Jobs across solutions, in which your product is one node and your competitors are others.</p>
+    </div>
+
+    <p class="after">The same energy-optimization principle, applied at higher levels of the graph and across segments grouped by higher-level Jobs, gives us strategic decisions.</p>
+
+    <hr>
+
+    <!-- ================================================================
+         VARIANT C — One block, labeled sections
+         ================================================================ -->
+    <h2>Variant C — One block, two labeled sections</h2>
+    <p class="desc">Single card with a thin divider inside. Skeptic's question on top, author's answer below. Both explicitly labeled. Compact — the dialog is clearly one "event" but both voices are distinguishable.</p>
+
+    <p class="context">I currently see more than 20 mechanics for value creation, including base mechanics (fix problems, kill Jobs, perform more Jobs with one solution) and composite mechanics (climb to the next-higher Job, take the Job off the person entirely).</p>
+
+    <div class="vc-dialog">
+      <div class="vc-question">
+        <div class="label-row">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><path d="M12 3V1m0 0L10.5 2.5M12 1l1.5 1.5"/></svg>
+          <span class="label-text">Skeptic · Wes</span>
+        </div>
+        <p class="vc-question__text">"OK but isn't this just 'understand your customer and make their life easier'? Every UX person already says that. What's actually new here?"</p>
+      </div>
+      <div class="vc-answer">
+        <div class="label-row">
+          <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M5.5 21c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/></svg>
+          <span class="label-text">Author</span>
+        </div>
+        <p class="vc-answer__text">What's new is the <em>unit of analysis</em>. UX talks about flows and screens; AJTBD talks about Jobs and graphs. A flow is a recording of one person doing one thing on one product. A graph is the space of Jobs across solutions, in which your product is one node and your competitors are others.</p>
+      </div>
+    </div>
+
+    <p class="after">The same energy-optimization principle, applied at higher levels of the graph and across segments grouped by higher-level Jobs, gives us strategic decisions.</p>
+
+  </div>
+</body>
+</html>
