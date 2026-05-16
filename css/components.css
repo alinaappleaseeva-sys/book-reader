@@ -14,51 +14,43 @@
 /* -----------------------------------------------------------------------
    Dialog — Skeptic ↔ Author (Variant A: minimal bubbles)
    
-   Two separate cards with different tones and indent.
-   Skeptic = navy tint, flush left.
-   Author = olive tint, indented left + slight overhang right.
-   No icons — text-only labels.
+   Two cards with the same background. Speaker identity via label only.
+   Author card symmetrically offset: same indent left = overhang right.
    ----------------------------------------------------------------------- */
 
-/* Wrapper: holds both cards, creates generous spacing from body text */
 .dialog {
   margin: var(--space-12) 0;
   max-width: var(--content-max);
 }
 
-/* Skeptic card — navy tint, flush left */
-.dialog__skeptic {
+/* Shared card style */
+.dialog__skeptic,
+.dialog__author {
   background: rgba(42, 63, 95, 0.05);
   border-radius: 10px 10px 10px 2px;
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+
+/* Skeptic: flush left */
+.dialog__skeptic {
   margin-bottom: 10px;
 }
 
-/* Author card — olive tint, indented left, slight overhang right */
+/* Author: symmetric offset — 40px indent left = 40px overhang right */
 .dialog__author {
-  background: rgba(45, 74, 62, 0.05);
-  border-radius: 10px 10px 10px 2px;
-  padding: var(--space-5) var(--space-6);
-  margin-left: 48px;
-  margin-right: -16px;
+  margin-left: 40px;
+  margin-right: -40px;
 }
 
-/* Speaker label — small, uppercase, text-only */
+/* Speaker label */
 .dialog__label {
   font-family: var(--font-ui);
   font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
+  color: var(--color-ink-muted);
   margin-bottom: var(--space-2);
-}
-
-.dialog__skeptic .dialog__label {
-  color: var(--color-accent);
-}
-
-.dialog__author .dialog__label {
-  color: var(--color-secondary);
 }
 
 /* Dialog text */
