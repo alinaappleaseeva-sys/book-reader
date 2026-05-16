@@ -28,7 +28,7 @@
 .dialog__author {
   background: rgba(42, 63, 95, 0.05);
   border-radius: 10px 10px 10px 2px;
-  padding: var(--space-5) var(--space-6) var(--space-6);
+  padding: var(--space-5) var(--space-8) var(--space-6);
 }
 
 /* Skeptic: flush left */
@@ -53,18 +53,11 @@
   margin-bottom: var(--space-2);
 }
 
-/* Dialog text */
+/* Dialog text — both speakers in italic, in quotes */
 .dialog__text {
   font-size: var(--text-base);
   line-height: var(--leading-body);
-}
-
-.dialog__skeptic .dialog__text {
   font-style: italic;
-}
-
-.dialog__author .dialog__text {
-  font-style: normal;
 }
 
 /* -----------------------------------------------------------------------
