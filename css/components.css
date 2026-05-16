@@ -23,12 +23,12 @@
   max-width: var(--content-max);
 }
 
-/* Shared card style */
+/* Shared card style — generous, symmetric padding */
 .dialog__skeptic,
 .dialog__author {
   background: rgba(42, 63, 95, 0.05);
   border-radius: 10px 10px 10px 2px;
-  padding: var(--space-5) var(--space-8) var(--space-6);
+  padding: var(--space-6);
 }
 
 /* Skeptic: flush left */
