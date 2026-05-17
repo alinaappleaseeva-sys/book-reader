@@ -167,7 +167,7 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
 
   /* Quiet scrollbar */
   scrollbar-width: thin;
@@ -187,29 +187,20 @@
   border-radius: 3px;
 }
 
+/* One full image per view — no half-visible neighbors */
 .gallery__slide {
-  flex: 0 0 85%;
-  max-width: 600px;
+  flex: 0 0 100%;
   scroll-snap-align: start;
 }
 
-@media (min-width: 768px) {
-  .gallery__slide {
-    flex: 0 0 60%;
-  }
-}
-
-@media (min-width: 1280px) {
-  .gallery__slide {
-    flex: 0 0 480px;
-  }
-}
-
+/* Paper-in-paper: image sits on a subtle card that matches the page */
 .gallery__img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius-md);
+  background: #FAF8F5;
+  border: 1px solid var(--color-border-light);
 }
 
 .gallery__caption {
