@@ -19,11 +19,13 @@
      ----------------------------------------------------------------------- */
   --color-paper:         #F5F3EF;   /* warm off-white background              */
   --color-paper-raised:  #FEFDFB;   /* slightly lighter — for cards if needed  */
+  --color-paper-elevated:#FAF8F4;   /* 2-3% lighter than paper — leaf in leaf  */
   --color-ink:           #1A1A1A;   /* near-black body text                    */
   --color-ink-muted:     #6B7280;   /* secondary text, captions, meta          */
   --color-ink-faint:     #9CA3AF;   /* tertiary — chapter numbers, hints       */
   --color-border:        #E5E1D8;   /* warm border for separators              */
   --color-border-light:  #F0EDE6;   /* very subtle divider                     */
+  --shadow-soft:         0 6px 18px rgba(0, 0, 0, 0.06); /* gallery/cards     */
 
   /* -----------------------------------------------------------------------
      Colors — Primary Accent: Deep Navy

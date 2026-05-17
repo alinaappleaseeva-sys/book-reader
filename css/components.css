@@ -193,14 +193,15 @@
   scroll-snap-align: start;
 }
 
-/* Paper-in-paper: image sits on a subtle card that matches the page */
+/* Paper-in-paper: image sits on a subtle elevated surface */
 .gallery__img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius-md);
-  background: #FAF8F5;
+  background: var(--color-paper-elevated);
   border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-soft);
 }
 
 .gallery__caption {
