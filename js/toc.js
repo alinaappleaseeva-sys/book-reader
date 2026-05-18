@@ -99,7 +99,8 @@
   var input       = overlay.querySelector('.toc-overlay__input');
   var chapterList = overlay.querySelector('#toc-chapter-list');
   var resultsList = overlay.querySelector('#toc-search-results');
-  var trigger     = document.querySelector('.col-middle__toc-trigger');
+  /* All TOC trigger buttons: desktop sidebar + tablet col-left + mobile FAB */
+  var triggers    = document.querySelectorAll('.js-toc-trigger, .col-middle__toc-trigger');
 
   var isOpen = false;
 
@@ -157,12 +158,14 @@
   /* -----------------------------------------------------------------------
      Open / close
      ----------------------------------------------------------------------- */
+  /* Touch devices: detect coarse pointer (finger, not mouse) */
+  var isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
   function open() {
     if (isOpen) return;
     isOpen = true;
     input.value = '';
     showChapters();
-    /* Remove [hidden], then trigger fade-in via rAF so transition fires */
     overlay.hidden = false;
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
@@ -171,7 +174,10 @@
     });
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    setTimeout(function () { input.focus(); }, 60);
+    /* On touch devices don't auto-focus — keyboard would cover the chapter list */
+    if (!isTouch) {
+      setTimeout(function () { input.focus(); }, 60);
+    }
   }
 
   function close() {
@@ -180,11 +186,10 @@
     overlay.classList.remove('toc-overlay--open');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    /* Restore [hidden] after fade-out transition */
-    overlay.addEventListener('transitionend', function hide() {
-      overlay.removeEventListener('transitionend', hide);
+    /* setTimeout more reliable than transitionend on mobile */
+    setTimeout(function () {
       if (!isOpen) overlay.hidden = true;
-    });
+    }, 300);
   }
 
   function showChapters() {
@@ -195,12 +200,12 @@
   /* -----------------------------------------------------------------------
      Event wiring
      ----------------------------------------------------------------------- */
-  if (trigger) {
-    trigger.addEventListener('click', function (e) {
+  triggers.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
       e.preventDefault();
       open();
     });
-  }
+  });
 
   closeBtn.addEventListener('click', close);
   backdrop.addEventListener('click', close);

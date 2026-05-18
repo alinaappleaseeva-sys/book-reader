@@ -32,6 +32,11 @@
         <a href="#" class="col-left__nav-item">Canon</a>
         <a href="#" class="col-left__nav-item">Home</a>
       </nav>
+      <!-- Tablet-only TOC trigger (desktop has col-middle button; mobile has FAB) -->
+      <button class="col-left__toc-btn js-toc-trigger" aria-label="Open table of contents">
+        <span class="col-left__toc-icon" aria-hidden="true">☰</span>
+        <span class="col-left__toc-label">TOC</span>
+      </button>
     </aside>
 
     <!-- ==================== MIDDLE COLUMN — Book Context + Chapter TOC ==================== -->
@@ -390,6 +395,12 @@
 
   </div>
 
+  <!-- Mobile FAB — visible only on <768px -->
+  <button class="toc-fab js-toc-trigger" aria-label="Open table of contents">
+    <span class="toc-fab__icon" aria-hidden="true">☰</span>
+    <span class="toc-fab__label">Contents</span>
+  </button>
+
   <!-- TOC Overlay — hidden until opened by toc.js -->
   <div id="toc-overlay" class="toc-overlay" role="dialog" aria-modal="true" aria-label="Table of contents" hidden>
     <div class="toc-overlay__backdrop"></div>
@@ -413,15 +424,17 @@
 
       <!-- Search -->
       <div class="toc-overlay__search-bar">
-        <input
-          id="toc-search"
-          type="search"
-          class="toc-overlay__input"
-          placeholder="Search across all chapters"
-          autocomplete="off"
-          spellcheck="false"
-        >
-        <span class="toc-overlay__kbd" aria-hidden="true">⌘/</span>
+        <div class="toc-overlay__search-field">
+          <input
+            id="toc-search"
+            type="search"
+            class="toc-overlay__input"
+            placeholder="Search across all chapters"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <span class="toc-overlay__kbd" aria-hidden="true">⌘/</span>
+        </div>
         <button class="toc-overlay__close" aria-label="Close table of contents">✕</button>
       </div>
 

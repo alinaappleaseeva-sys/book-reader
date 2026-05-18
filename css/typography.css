@@ -49,6 +49,13 @@ h3, h4 {
   margin-bottom: var(--space-3);
 }
 
+/* Extra bottom buffer on lone h3s that sit near the end of a section —
+   increases the scroll distance before the next section takes over,
+   giving the scroll-spy enough room to highlight the h3. */
+#a-note-on-expectations {
+  margin-bottom: var(--space-8);
+}
+
 /* -----------------------------------------------------------------------
    Body text
    ONE size. ONE color. ONE line-height. ONE margin.
