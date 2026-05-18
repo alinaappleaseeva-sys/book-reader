@@ -49,6 +49,7 @@
       /* Exit current slide */
       from.classList.remove('gallery-stack__item--active');
       from.classList.add('gallery-stack__item--exiting');
+      from.setAttribute('aria-hidden', 'true');
       /* Going backward: mirror the drift direction */
       if (dir < 0) from.style.transform = 'translateX(6%)';
 
@@ -58,6 +59,7 @@
       to.offsetHeight; /* eslint-disable-line no-unused-expressions */
       to.classList.remove('gallery-stack__item--entering');
       to.classList.add('gallery-stack__item--active');
+      to.setAttribute('aria-hidden', 'false');
 
       sync(next);
 
