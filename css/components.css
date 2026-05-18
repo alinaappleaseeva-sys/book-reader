@@ -298,3 +298,80 @@
 .gallery-stack__slide-caption {
   display: none;
 }
+
+/* -----------------------------------------------------------------------
+   Two-pane layout — PCA-inspired
+
+   Page "splits" into image-left / text-right when a concept needs
+   a diagram to sit alongside its explanation.
+
+   Entrance: the block fades + lifts into view via IntersectionObserver.
+   Sticky: the image stays visible as the longer text column scrolls past.
+   Mobile: stacks vertically (image → text).
+   ----------------------------------------------------------------------- */
+
+.two-pane {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: var(--space-8);
+  margin: var(--space-12) 0;
+  align-items: start;
+
+  /* Entrance state — invisible and slightly below */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 380ms ease,
+              transform 380ms ease;
+}
+
+.two-pane--revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Image column — sticks in place while text scrolls past */
+.two-pane__image {
+  position: sticky;
+  top: var(--space-12);
+}
+
+.two-pane__image figure {
+  margin: 0;
+}
+
+.two-pane__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-soft);
+}
+
+.two-pane__image figcaption {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+  line-height: var(--leading-normal);
+  margin-top: var(--space-2);
+}
+
+/* Text column — override content-max so text wraps to column width */
+.two-pane__text p,
+.two-pane__text ol,
+.two-pane__text ul,
+.two-pane__text h3,
+.two-pane__text h4 {
+  max-width: none;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 767px) {
+  .two-pane {
+    grid-template-columns: 1fr;
+  }
+
+  .two-pane__image {
+    position: static;
+  }
+}
