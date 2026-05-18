@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery variants — Scroll vs Stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <style>
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+      margin: 0;
+      padding: 48px 24px 120px;
+    }
+    .page { max-width: 720px; margin: 0 auto; }
+    h1 { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 500; margin-bottom: 8px; }
+    h2 { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 500; margin-top: 56px; margin-bottom: 8px; color: var(--color-accent); }
+    .desc { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--color-ink-muted); margin-bottom: 24px; line-height: 1.6; }
+    hr { border: none; border-top: 1px solid var(--color-border); margin: 48px 0; }
+
+    /* ================================================================
+       VARIANT A — Current horizontal scroll (for comparison)
+       ================================================================ */
+    .va-gallery { margin: 24px 0; }
+    .va-label {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      color: var(--color-ink-faint); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 10px;
+    }
+    .va-track {
+      display: flex; gap: 16px; overflow-x: auto;
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px; scrollbar-width: thin;
+      scrollbar-color: var(--color-border) transparent;
+    }
+    .va-track::-webkit-scrollbar { height: 6px; }
+    .va-track::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+    .va-slide {
+      flex: 0 0 100%; scroll-snap-align: start;
+    }
+    .va-slide img {
+      display: block; width: 100%; height: auto; border-radius: 8px;
+      background: var(--color-paper-elevated);
+      border: 1px solid var(--color-border-light);
+      box-shadow: var(--shadow-soft);
+    }
+    .va-caption {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      color: var(--color-ink-faint); margin-top: 8px; line-height: 1.5;
+    }
+    .va-counter {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      color: var(--color-ink-faint); text-align: right; margin-top: 8px;
+    }
+
+    /* ================================================================
+       VARIANT B — Stack of sheets
+       ================================================================ */
+    .stack { margin: 24px 0; position: relative; }
+    .stack__label {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+      color: var(--color-ink-faint); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 10px;
+    }
+
+    .stack__viewport {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      /* Subtle perspective for the slight tilt */
+      perspective: 1200px;
+    }
+
+    /* The "deck" — stacked cards behind current */
+    .stack__viewport::before,
+    .stack__viewport::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 8px;
+      background: var(--color-paper-elevated);
+      border: 1px solid var(--color-border-light);
+    }
+    /* Bottom sheet — 2 visible edges */
+    .stack__viewport::before {
+      transform: translate(4px, 4px);
+      z-index: 0;
+      opacity: 0.5;
+    }
+    /* Middle sheet — 1 visible edge */
+    .stack__viewport::after {
+      transform: translate(2px, 2px);
+      z-index: 1;
+      opacity: 0.7;
+    }
+
+    .stack__slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 220ms ease-out, opacity 220ms ease-out;
+      transform-origin: center center;
+    }
+    .stack__slide--active {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 3;
+      transform: translate(0, 0) rotate(0deg);
+    }
+    .stack__slide--exiting {
+      opacity: 0;
+      transform: translateX(-60%) rotate(-2deg);
+      z-index: 4;
+      pointer-events: none;
+    }
+    .stack__slide--entering {
+      opacity: 0;
+      transform: translateX(30%);
+    }
+
+    .stack__slide img {
+      display: block; width: 100%; height: auto; border-radius: 8px;
+      background: var(--color-paper-elevated);
+      border: 1px solid var(--color-border-light);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      z-index: 2;
+    }
+
+    .stack__caption {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      color: var(--color-ink-faint); margin-top: 8px; line-height: 1.5;
+      min-height: 34px;
+    }
+
+    .stack__controls {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 8px;
+    }
+    .stack__counter {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      color: var(--color-ink-faint);
+    }
+    .stack__nav {
+      display: flex; gap: 8px;
+    }
+    .stack__btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--color-border);
+      background: var(--color-paper);
+      color: var(--color-ink-muted);
+      cursor: pointer; font-size: 14px;
+      transition: background 120ms, border-color 120ms;
+    }
+    .stack__btn:hover {
+      background: var(--color-paper-elevated);
+      border-color: var(--color-ink-faint);
+    }
+    .stack__btn:disabled {
+      opacity: 0.3; cursor: default;
+    }
+
+    /* Dots indicator */
+    .stack__dots {
+      display: flex; gap: 6px; justify-content: center; margin-top: 12px;
+    }
+    .stack__dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-border);
+      transition: background 200ms;
+    }
+    .stack__dot--active {
+      background: var(--color-ink-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Gallery variants — compare</h1>
+    <p class="desc">Both variants show the same 4 images from the gas station story. Scroll down to compare.</p>
+
+    <!-- ================================================================
+         VARIANT A — Current scroll
+         ================================================================ -->
+    <h2>Variant A — Horizontal scroll (current)</h2>
+    <p class="desc">Swipe/scroll to advance. One full image at a time, scroll-snap. This is what's in the PR now.</p>
+
+    <div class="va-gallery">
+      <p class="va-label">Gallery · Gas station evolution</p>
+      <div class="va-track">
+        <figure class="va-slide">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_1.png" alt="Slide 1" loading="lazy">
+          <figcaption class="va-caption">How the simplest gas stations turned into roadside supermarkets.</figcaption>
+        </figure>
+        <figure class="va-slide">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_2.png" alt="Slide 2" loading="lazy">
+          <figcaption class="va-caption">Our hero wants to drive from New York to Boston. Coffee + full tank.</figcaption>
+        </figure>
+        <figure class="va-slide">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_3.png" alt="Slide 3" loading="lazy">
+          <figcaption class="va-caption">Their brain predicted the value and sub-Jobs automatically.</figcaption>
+        </figure>
+        <figure class="va-slide">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_4.png" alt="Slide 4" loading="lazy">
+          <figcaption class="va-caption">No fuel — that's a "problem." Negative emotions + Tax Jobs.</figcaption>
+        </figure>
+      </div>
+      <p class="va-counter">4 slides · scroll →</p>
+    </div>
+
+    <hr>
+
+    <!-- ================================================================
+         VARIANT B — Stack of sheets
+         ================================================================ -->
+    <h2>Variant B — Stack of sheets</h2>
+    <p class="desc">Click the image or use ← → buttons to flip through. Current image is the top sheet; next sheets peek out behind (2px offset + shadow). Slide-away animation with slight tilt (220ms).</p>
+
+    <div class="stack" id="stack1">
+      <p class="stack__label">Gallery · Gas station evolution</p>
+      <div class="stack__viewport" data-stack="stack1">
+        <div class="stack__slide stack__slide--active" data-index="0">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_1.png" alt="Slide 1" loading="lazy">
+        </div>
+        <div class="stack__slide" data-index="1">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_2.png" alt="Slide 2" loading="lazy">
+        </div>
+        <div class="stack__slide" data-index="2">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_3.png" alt="Slide 3" loading="lazy">
+        </div>
+        <div class="stack__slide" data-index="3">
+          <img src="https://zamesin.ru/producthowto/book/content/images/2025/01/4_4.png" alt="Slide 4" loading="lazy">
+        </div>
+      </div>
+      <p class="stack__caption" id="stack1-caption">How the simplest gas stations turned into roadside supermarkets.</p>
+      <div class="stack__controls">
+        <span class="stack__counter" id="stack1-counter">1 / 4</span>
+        <div class="stack__nav">
+          <button class="stack__btn" id="stack1-prev" disabled aria-label="Previous">←</button>
+          <button class="stack__btn" id="stack1-next" aria-label="Next">→</button>
+        </div>
+      </div>
+      <div class="stack__dots" id="stack1-dots">
+        <span class="stack__dot stack__dot--active"></span>
+        <span class="stack__dot"></span>
+        <span class="stack__dot"></span>
+        <span class="stack__dot"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function() {
+      const captions = [
+        'How the simplest gas stations turned into roadside supermarkets.',
+        'Our hero wants to drive from New York to Boston. Coffee + full tank.',
+        'Their brain predicted the value and sub-Jobs automatically.',
+        'No fuel — that\u2019s a \u201cproblem.\u201d Negative emotions + Tax Jobs.'
+      ];
+
+      const slides = document.querySelectorAll('#stack1 .stack__slide');
+      const captionEl = document.getElementById('stack1-caption');
+      const counterEl = document.getElementById('stack1-counter');
+      const prevBtn = document.getElementById('stack1-prev');
+      const nextBtn = document.getElementById('stack1-next');
+      const dots = document.querySelectorAll('#stack1-dots .stack__dot');
+      let current = 0;
+      let animating = false;
+
+      function goTo(next, direction) {
+        if (animating || next === current || next < 0 || next >= slides.length) return;
+        animating = true;
+
+        const currentSlide = slides[current];
+        const nextSlide = slides[next];
+
+        // Exit current
+        currentSlide.classList.remove('stack__slide--active');
+        currentSlide.classList.add('stack__slide--exiting');
+        if (direction === 'backward') {
+          currentSlide.style.transform = 'translateX(60%) rotate(2deg)';
+        }
+
+        // Prepare next
+        nextSlide.classList.add('stack__slide--entering');
+        nextSlide.offsetHeight; // force reflow
+        nextSlide.classList.remove('stack__slide--entering');
+        nextSlide.classList.add('stack__slide--active');
+
+        // Update UI
+        captionEl.textContent = captions[next];
+        counterEl.textContent = (next + 1) + ' / ' + slides.length;
+        prevBtn.disabled = next === 0;
+        nextBtn.disabled = next === slides.length - 1;
+        dots.forEach((d, i) => d.classList.toggle('stack__dot--active', i === next));
+
+        setTimeout(() => {
+          currentSlide.classList.remove('stack__slide--exiting');
+          currentSlide.style.transform = '';
+          current = next;
+          animating = false;
+        }, 240);
+      }
+
+      // Click viewport to advance
+      document.querySelector('#stack1 .stack__viewport').addEventListener('click', () => {
+        if (current < slides.length - 1) goTo(current + 1, 'forward');
+      });
+
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); goTo(current + 1, 'forward'); });
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); goTo(current - 1, 'backward'); });
+
+      // Keyboard
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') goTo(current + 1, 'forward');
+        if (e.key === 'ArrowLeft') goTo(current - 1, 'backward');
+      });
+    })();
+  </script>
+</body>
+</html>
