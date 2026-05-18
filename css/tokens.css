@@ -73,10 +73,10 @@
   --text-sm:       0.875rem;   /* 14px — meta, captions, nav               */
   --text-base:     1.1875rem;  /* 19px — body text; Crimson Pro reads small */
   --text-lg:       1.25rem;    /* 20px — lead paragraphs                   */
-  --text-xl:       1.5rem;     /* 24px — h3                                */
-  --text-2xl:      1.75rem;    /* 28px — h2                                */
+  --text-xl:       1.5rem;     /* 24px — h2 section heading                */
+  --text-2xl:      1.75rem;    /* 28px — (reserved)                        */
   --text-3xl:      2.5rem;     /* 40px — h1 chapter title                  */
-  --text-pull:     1.625rem;   /* 26px — pull-quotes                       */
+  --text-pull:     2rem;       /* 32px — pull-quotes                       */
 
   --leading-tight:    1.25;
   --leading-normal:   1.5;
@@ -107,7 +107,7 @@
      ----------------------------------------------------------------------- */
   --col-left:     80px;
   --col-middle:   300px;
-  --col-right:    min(780px, 100%);
+  --col-right:    min(820px, 100%);
   --content-max:  680px;       /* max-width for body text column           */
   --gap-columns:  0;           /* columns touch; padding inside each       */
 
