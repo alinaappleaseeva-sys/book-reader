@@ -385,6 +385,14 @@
   max-width: none;
 }
 
+/* Mobile: remove dialog offset — no room for -40px overhang */
+@media (max-width: 767px) {
+  .dialog__author {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 /* Mobile: stack vertically, gallery full-width */
 @media (max-width: 767px) {
   .two-pane {
