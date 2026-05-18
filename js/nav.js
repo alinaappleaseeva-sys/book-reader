@@ -43,24 +43,25 @@
     if (!h2) return;
 
     entries.push({
-      el:    section,
-      id:    section.id,
-      text:  h2.textContent.trim(),
-      level: 2
+      el:       h2,      /* scroll-spy tracks h2 position, not section top */
+      scrollTo: section, /* click scrolls to section start */
+      id:       section.id,
+      text:     h2.textContent.trim(),
+      level:    2
     });
 
-    /* h3 inside this section (including those inside .two-pane__text) */
+    /* h3 inside this section */
     section.querySelectorAll('h3').forEach(function (h3) {
-      /* skip h3 inside .footnotes just in case */
       if (h3.closest('.footnotes')) return;
 
       if (!h3.id) h3.id = slugify(h3.textContent);
 
       entries.push({
-        el:    h3,
-        id:    h3.id,
-        text:  h3.textContent.trim(),
-        level: 3
+        el:       h3,
+        scrollTo: h3,
+        id:       h3.id,
+        text:     h3.textContent.trim(),
+        level:    3
       });
     });
   });
@@ -84,7 +85,7 @@
 
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      entry.el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      entry.scrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     li.appendChild(a);
@@ -106,10 +107,17 @@
   }
 
   function updateActive() {
-    var threshold = window.innerHeight * 0.3;
-    var best = 0;                          /* default to first entry */
+    /* h3 entries: activate when heading crosses 22% mark — gives them
+       a comfortable lead-in window before the next heading takes over.
+       h2 entries: activate only when heading is ≤80px from top — this
+       delays the h2 "taking over", so any preceding h3 stays highlighted
+       across the full sub-section scroll range. */
+    var thresholdH3 = window.innerHeight * 0.55;
+    var thresholdH2 = 80;
+    var best = 0;
     entries.forEach(function (entry, i) {
-      if (entry.el.getBoundingClientRect().top <= threshold) best = i;
+      var t = entry.level === 2 ? thresholdH2 : thresholdH3;
+      if (entry.el.getBoundingClientRect().top <= t) best = i;
     });
     setActive(best);
   }

@@ -365,13 +365,26 @@
   max-width: none;
 }
 
-/* Mobile: stack vertically */
+/* Mobile: stack vertically, gallery full-width */
 @media (max-width: 767px) {
   .two-pane {
     grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
 
   .two-pane__image {
     position: static;
+  }
+
+  /* Gallery inside two-pane takes full width on mobile */
+  .two-pane__image .gallery-stack {
+    max-width: 100%;
+  }
+}
+
+/* Tablet: narrow the image column slightly so text has room */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .two-pane {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }

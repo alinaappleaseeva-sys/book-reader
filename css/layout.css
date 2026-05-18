@@ -96,6 +96,42 @@
   color: var(--color-ink-muted);
 }
 
+/* Tablet-only TOC button inside col-left */
+.col-left__toc-btn {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .col-left__toc-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    margin-top: auto;
+    padding: var(--space-2) 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-ink-faint);
+    transition: color var(--duration-fast) ease;
+  }
+
+  .col-left__toc-btn:hover {
+    color: var(--color-ink-muted);
+  }
+
+  .col-left__toc-icon {
+    font-size: 1.125rem;
+    line-height: 1;
+  }
+
+  .col-left__toc-label {
+    font-family: var(--font-ui);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+  }
+}
+
 /* Hide on mobile */
 @media (max-width: 767px) {
   .col-left {
@@ -207,6 +243,11 @@
   color: var(--color-ink-faint);
 }
 
+/* Must come after --h3 so active accent wins on h3 links too */
+.col-middle__section-link--h3.col-middle__section-link--active {
+  color: var(--color-accent);
+}
+
 /* Fade-out at bottom to hint scrollability */
 .col-middle::after {
   content: '';
@@ -282,9 +323,59 @@
   }
 }
 
-/* Mobile: tighter padding */
+/* Mobile: tighter padding + extra bottom space for FAB */
 @media (max-width: 767px) {
   .col-right {
     padding: var(--space-8) var(--space-4);
+    padding-bottom: calc(var(--space-8) + 72px);
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Mobile FAB — "Open table of contents" floating button
+   ----------------------------------------------------------------------- */
+
+.toc-fab {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .toc-fab {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    position: fixed;
+    bottom: var(--space-6);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--z-sticky);
+    background: var(--color-accent);
+    color: var(--color-paper);
+    border: none;
+    border-radius: 24px;
+    padding: var(--space-3) var(--space-6);
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(42, 63, 95, 0.35);
+    white-space: nowrap;
+    transition: background var(--duration-fast) ease,
+                box-shadow var(--duration-fast) ease,
+                transform var(--duration-fast) ease;
+  }
+
+  .toc-fab:hover {
+    background: var(--color-accent-hover);
+    box-shadow: 0 6px 20px rgba(42, 63, 95, 0.45);
+  }
+
+  .toc-fab:active {
+    transform: translateX(-50%) scale(0.97);
+  }
+
+  .toc-fab__icon {
+    font-size: 1rem;
+    line-height: 1;
   }
 }
