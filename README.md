@@ -116,8 +116,9 @@ A competitor's entry exists at `editorial-book-ui-41282466630.us-west1.run.app`.
 
 ## Production
 
-- **Prod URL:** TBD (will be deployed to a static host)
-- **Domain:** TBD
+- **Prod URL:** https://alinaappleaseeva-sys.github.io/book-reader/
+- **Host:** GitHub Pages (`gh-pages` branch → root)
+- **Auto-deploy:** push to `gh-pages` to update
 
 ## References
 
