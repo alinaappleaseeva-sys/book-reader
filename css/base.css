@@ -79,3 +79,26 @@ button {
 :focus:not(:focus-visible) {
   outline: none;
 }
+
+/* Skip-to-content — visually hidden, appears on keyboard focus */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: var(--space-4);
+  z-index: calc(var(--z-modal) + 10);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: top var(--duration-fast) ease;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  outline: 2px solid var(--color-active);
+  outline-offset: 2px;
+}
