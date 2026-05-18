@@ -202,7 +202,7 @@
 }
 
 .col-middle__chapter-link--active {
-  color: var(--color-accent);
+  color: var(--color-active);
   font-weight: 500;
 }
 
@@ -233,7 +233,7 @@
 }
 
 .col-middle__section-link--active {
-  color: var(--color-accent);
+  color: var(--color-active);
 }
 
 /* h3 sub-entries — indented, slightly smaller */
@@ -245,7 +245,7 @@
 
 /* Must come after --h3 so active accent wins on h3 links too */
 .col-middle__section-link--h3.col-middle__section-link--active {
-  color: var(--color-accent);
+  color: var(--color-active);
 }
 
 /* Fade-out at bottom to hint scrollability */
@@ -358,7 +358,7 @@
     font-size: var(--text-sm);
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(42, 63, 95, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
     white-space: nowrap;
     transition: background var(--duration-fast) ease,
                 box-shadow var(--duration-fast) ease,
@@ -367,7 +367,7 @@
 
   .toc-fab:hover {
     background: var(--color-accent-hover);
-    box-shadow: 0 6px 20px rgba(42, 63, 95, 0.45);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.38);
   }
 
   .toc-fab:active {

@@ -21,27 +21,35 @@
   --color-paper-raised:  #FEFDFB;   /* slightly lighter — for cards if needed  */
   --color-paper-elevated:#F5F3EF;   /* same as paper — flat, no 'white card'  */
   --color-ink:           #1A1A1A;   /* near-black body text                    */
-  --color-ink-muted:     #6B7280;   /* secondary text, captions, meta          */
+  --color-ink-muted:     #4B5563;   /* secondary text, captions, meta          */
   --color-ink-faint:     #9CA3AF;   /* tertiary — chapter numbers, hints       */
   --color-border:        #E5E1D8;   /* warm border for separators              */
   --color-border-light:  #F0EDE6;   /* very subtle divider                     */
   --shadow-soft:         0 2px 8px rgba(0, 0, 0, 0.03);  /* barely there    */
 
   /* -----------------------------------------------------------------------
-     Colors — Primary Accent: Deep Navy
-     "Serious, strategic, B2B grown-up product."
-     Used for: links, active TOC items, action buttons, focus rings.
+     Colors — Primary Accent: Dark Warm Neutral
+     "Zero-bullshit Notion/Stripe-docs tone — text does the work."
+     Used for: body links, chapter-end nav, toc-trigger, FAB button.
      ----------------------------------------------------------------------- */
-  --color-accent:        #2A3F5F;
-  --color-accent-hover:  #1E3050;
-  --color-accent-light:  #E6EBF2;
-  --color-accent-mid:    #B3C3D9;
-  --color-selection:     #D0DAE8;
+  --color-accent:        #252628;   /* near-black, warm undertone             */
+  --color-accent-hover:  #111113;   /* deeper on hover                        */
+  --color-accent-light:  #EAEAEA;   /* very subtle tint                       */
+  --color-accent-mid:    #9B9BA0;   /* mid — quiet dividers                   */
+  --color-selection:     #E4E4E6;   /* text selection highlight               */
 
   /* -----------------------------------------------------------------------
-     Colors — Secondary Accent: Dark Olive
-     "Quiet power, natural authority."
-     Used for: scholar citations, subtle borders, secondary icons.
+     Colors — Active State Accent: Restrained Slate-Blue
+     "Cold neutral shift — readable state without screaming SaaS."
+     Used for: active TOC item, current chapter, focus rings, search marks.
+     ----------------------------------------------------------------------- */
+  --color-active:        #2A3F80;   /* slate-blue — only active/current states */
+  --color-active-hover:  #1E3070;
+  --color-active-light:  #E6EBF5;
+  --color-active-mid:    #9BAACF;
+
+  /* -----------------------------------------------------------------------
+     Colors — Secondary: Dark Olive (reserved for citations / callouts)
      ----------------------------------------------------------------------- */
   --color-secondary:       #2D4A3E;
   --color-secondary-hover: #1F3A2F;
