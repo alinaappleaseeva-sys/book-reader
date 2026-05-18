@@ -6,10 +6,10 @@
    should contain raw color values, font names, or magic numbers.
    
    Fonts (all free, Google Fonts):
-   - Source Serif 4  — body text (reading-optimized serif)
-   - Space Grotesk   — headings (modern sans with character)
-   - Inter           — UI elements, navigation, meta
-   - JetBrains Mono  — inline code, templates
+   - Crimson Pro   — body text (elegant editorial serif, long-form reading)
+   - Outfit        — headings (clean modern sans, confident without being loud)
+   - Inter         — UI elements, navigation, meta
+   - JetBrains Mono — inline code, templates
    ========================================================================== */
 
 :root {
@@ -51,8 +51,8 @@
   /* -----------------------------------------------------------------------
      Typography — Font families
      ----------------------------------------------------------------------- */
-  --font-body:     'Source Serif 4', 'Georgia', serif;
-  --font-heading:  'Space Grotesk', 'Arial', sans-serif;
+  --font-body:     'Crimson Pro', 'Georgia', serif;
+  --font-heading:  'Outfit', 'Helvetica Neue', sans-serif;
   --font-ui:       'Inter', 'Helvetica Neue', 'Arial', sans-serif;
   --font-mono:     'JetBrains Mono', 'Consolas', monospace;
 
@@ -63,7 +63,7 @@
      ----------------------------------------------------------------------- */
   --text-xs:       0.75rem;    /* 12px — tiny labels                       */
   --text-sm:       0.875rem;   /* 14px — meta, captions, nav               */
-  --text-base:     1.125rem;   /* 18px — body text (larger than default)   */
+  --text-base:     1.1875rem;  /* 19px — body text; Crimson Pro reads small */
   --text-lg:       1.25rem;    /* 20px — lead paragraphs                   */
   --text-xl:       1.5rem;     /* 24px — h3                                */
   --text-2xl:      1.75rem;    /* 28px — h2                                */
