@@ -207,6 +207,18 @@
   color: var(--color-ink-faint);
 }
 
+/* Fade-out at bottom to hint scrollability */
+.col-middle::after {
+  content: '';
+  position: sticky;
+  bottom: 0;
+  display: block;
+  height: var(--space-12);
+  background: linear-gradient(to bottom, transparent, var(--color-paper));
+  pointer-events: none;
+  margin-top: calc(var(--space-12) * -1);
+}
+
 /* Hide on tablet and mobile */
 @media (max-width: 1279px) {
   .col-middle {
@@ -222,6 +234,45 @@
   grid-area: right;
   padding: var(--space-12) var(--space-8);
   max-width: 820px;
+}
+
+/* End-of-chapter navigation block */
+.chapter-end {
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+}
+
+.chapter-end__rule {
+  border: none;
+  border-top: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-6);
+}
+
+.chapter-end__nav {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.chapter-end__label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  flex-shrink: 0;
+}
+
+.chapter-end__link {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+.chapter-end__link:hover {
+  color: var(--color-accent-hover);
 }
 
 /* On wide screens, add left margin so text doesn't hug the border */
