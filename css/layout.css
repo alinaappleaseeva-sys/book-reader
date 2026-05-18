@@ -200,6 +200,13 @@
   color: var(--color-accent);
 }
 
+/* h3 sub-entries — indented, slightly smaller */
+.col-middle__section-link--h3 {
+  padding-left: calc(var(--space-2) + var(--space-3));
+  font-size: 0.6875rem;   /* 11px — one step below the 12px h2 entries */
+  color: var(--color-ink-faint);
+}
+
 /* Hide on tablet and mobile */
 @media (max-width: 1279px) {
   .col-middle {
