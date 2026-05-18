@@ -378,12 +378,65 @@
         </ol>
       </section>
 
+      <div class="chapter-end">
+        <hr class="chapter-end__rule">
+        <div class="chapter-end__nav">
+          <span class="chapter-end__label">Next chapter</span>
+          <a href="#" class="chapter-end__link">5. The Skeptic's Toolkit →</a>
+        </div>
+      </div>
+
     </main>
 
+  </div>
+
+  <!-- TOC Overlay — hidden until opened by toc.js -->
+  <div id="toc-overlay" class="toc-overlay" role="dialog" aria-modal="true" aria-label="Table of contents" hidden>
+    <div class="toc-overlay__backdrop"></div>
+    <div class="toc-overlay__panel">
+
+      <!-- Header: chapter count + subscribe toggle -->
+      <div class="toc-overlay__header">
+        <div class="toc-overlay__header-meta">
+          <span class="toc-overlay__book-count" id="toc-book-count">This book has 27 chapters</span>
+          <span class="toc-overlay__in-progress" id="toc-in-progress">22 more in progress</span>
+        </div>
+        <label class="toc-overlay__subscribe-label" title="Coming soon">
+          <span class="toc-overlay__toggle" aria-hidden="true">
+            <span class="toc-overlay__toggle-track">
+              <span class="toc-overlay__toggle-thumb"></span>
+            </span>
+          </span>
+          <span class="toc-overlay__subscribe-text">Subscribe to new chapters</span>
+        </label>
+      </div>
+
+      <!-- Search -->
+      <div class="toc-overlay__search-bar">
+        <input
+          id="toc-search"
+          type="search"
+          class="toc-overlay__input"
+          placeholder="Search across all chapters"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <span class="toc-overlay__kbd" aria-hidden="true">⌘/</span>
+        <button class="toc-overlay__close" aria-label="Close table of contents">✕</button>
+      </div>
+
+      <div class="toc-overlay__body">
+        <ul class="toc-overlay__chapter-list" id="toc-chapter-list" aria-label="Chapters"></ul>
+        <ul class="toc-overlay__results"      id="toc-search-results" aria-live="polite" hidden></ul>
+      </div>
+
+    </div>
   </div>
 
   <script src="js/gallery.js"></script>
   <script src="js/two-pane.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/toc.js"></script>
+  <script src="js/search.js"></script>
 </body>
 </html>
