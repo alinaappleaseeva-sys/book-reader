@@ -22,8 +22,9 @@ h1, h2, h3, h4 {
 
 h1 {
   font-size: var(--text-3xl);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--leading-heading);
+  letter-spacing: -0.015em;
   margin-bottom: var(--space-4);
 }
 
