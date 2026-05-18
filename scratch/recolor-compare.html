@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image recolor — before/after</title>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <style>
+    body {
+      background: var(--color-paper);
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0; padding: 40px 24px 120px;
+      color: var(--color-ink);
+    }
+    .page { max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+    .desc { font-size: 14px; color: var(--color-ink-muted); margin-bottom: 32px; line-height: 1.6; }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .compare__col h2 {
+      font-size: 14px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--color-ink-muted);
+      margin-bottom: 12px;
+    }
+    .compare__col img {
+      display: block; width: 100%; height: auto;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .palette {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
+    }
+    .swatch {
+      width: 40px; height: 40px; border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: flex-end; justify-content: center;
+      font-size: 9px; color: white; padding-bottom: 3px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Image recolor — before / after</h1>
+    <p class="desc">Left: original from zamesin.ru (cold white bg, bright cyans). Right: recolored to match book-reader palette (warm paper bg, muted navy, olive-graphite).</p>
+
+    <div class="compare">
+      <div class="compare__col">
+        <h2>Original</h2>
+        <img src="../images/4_1_original.png" alt="Original">
+      </div>
+      <div class="compare__col">
+        <h2>Recolored</h2>
+        <img src="../images/4_1_recolored.png" alt="Recolored">
+      </div>
+    </div>
+
+    <h2 style="margin-top:40px; font-size: 16px;">Target palette used</h2>
+    <div class="palette">
+      <div class="swatch" style="background:#F5F3EF; color:#666;">paper</div>
+      <div class="swatch" style="background:#2A3F5F;">navy</div>
+      <div class="swatch" style="background:#6B8AAF;">soft</div>
+      <div class="swatch" style="background:#2D3A35;">graphite</div>
+      <div class="swatch" style="background:#6B6760;">dk gray</div>
+      <div class="swatch" style="background:#9C9891;">md gray</div>
+      <div class="swatch" style="background:#C3BFB8;">lt gray</div>
+    </div>
+  </div>
+</body>
+</html>
