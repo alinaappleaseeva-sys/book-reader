@@ -23,23 +23,29 @@
   max-width: var(--content-max);
 }
 
-/* Shared card style — generous, symmetric padding */
+/* Shared card style */
 .dialog__skeptic,
 .dialog__author {
-  background: rgba(42, 63, 95, 0.05);
   border-radius: 10px 10px 10px 2px;
   padding: var(--space-6);
 }
 
-/* Skeptic: flush left */
+/* Skeptic: subtle cool tint — "outside voice" */
 .dialog__skeptic {
+  background: var(--color-active-light);
   margin-bottom: 10px;
 }
 
-/* Author: symmetric offset — 40px indent left = 40px overhang right */
+/* Author: warm paper tint — "my voice" */
 .dialog__author {
+  background: var(--color-border-light);
   margin-left: 40px;
   margin-right: -40px;
+}
+
+/* Author label gets the active slate-blue — quiet authority signal */
+.dialog__author .dialog__label {
+  color: var(--color-active);
 }
 
 /* Speaker label */
@@ -96,13 +102,16 @@
    ----------------------------------------------------------------------- */
 
 .pull-quote {
-  font-size: var(--text-pull);
-  line-height: 1.5;
+  font-size: 2rem;
+  line-height: 1.45;
   font-style: italic;
   text-align: center;
-  max-width: 600px;
-  margin: var(--space-12) auto;
-  padding: 0 var(--space-6);
+  color: var(--color-ink-muted);
+  max-width: 560px;
+  margin: var(--space-16) auto;
+  padding: var(--space-8) var(--space-6);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 /* -----------------------------------------------------------------------
@@ -110,7 +119,18 @@
    ----------------------------------------------------------------------- */
 
 .chapter-header {
-  margin-bottom: var(--space-4);
+  padding-top: var(--space-8);
+  margin-bottom: var(--space-8);
+}
+
+.chapter-header .meta-label {
+  margin-bottom: var(--space-3);
+}
+
+.chapter-header .lead {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--color-ink-muted);
 }
 
 /* -----------------------------------------------------------------------
